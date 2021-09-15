@@ -1,11 +1,25 @@
 import React from "react";
-// import { Route } from "react-router-dom";
+import { Route } from "react-router-dom";
+// COUNTRIES
+import { CountryProvider } from "./countries/CountryProvider";
+// CITIES
+import { CityProvider } from "./cities/CityProvider";
+// RESTAURANTS
+import { RestaurantList } from "./restaurants/RestaurantList";
+import { RestaurantProvider } from "./restaurants/RestaurantProvider";
 
 export const ApplicationViews = () => {
   return (
     <>
-      <h1>Congrats</h1>
-      <h2>You were able to log in successfully!</h2>
+      <CountryProvider>
+        <CityProvider>
+          <RestaurantProvider>
+            <Route exact path="/restaurants">
+              <RestaurantList />
+            </Route>
+          </RestaurantProvider>
+        </CityProvider>
+      </CountryProvider>
     </>
   );
 };

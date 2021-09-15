@@ -19,7 +19,7 @@ export const NavBar = (props) => {
         <Link to={"/"}>Create a Recipe</Link>
       </li>
       <li className="navbar__item">
-        <Link to={"/"}>Restaurants</Link>
+        <Link to={"/restaurants"}>Restaurants</Link>
       </li>
       <li className="navbar__item">
         <Link to={"/"}>About</Link>
