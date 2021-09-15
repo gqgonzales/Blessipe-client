@@ -5,8 +5,11 @@ import { CountryProvider } from "./countries/CountryProvider";
 // CITIES
 import { CityProvider } from "./cities/CityProvider";
 // RESTAURANTS
-import { RestaurantList } from "./restaurants/RestaurantList";
 import { RestaurantProvider } from "./restaurants/RestaurantProvider";
+import { RestaurantList } from "./restaurants/RestaurantList";
+// RECIPES
+import { RecipeProvider } from "./recipes/RecipeProvider";
+import { RecipeList } from "./recipes/RecipeList.js";
 
 export const ApplicationViews = () => {
   return (
@@ -14,9 +17,15 @@ export const ApplicationViews = () => {
       <CountryProvider>
         <CityProvider>
           <RestaurantProvider>
-            <Route exact path="/restaurants">
-              <RestaurantList />
-            </Route>
+            <RecipeProvider>
+              <Route exact path="/restaurants">
+                <RestaurantList />
+              </Route>
+
+              <Route exact path="/recipes">
+                <RecipeList />
+              </Route>
+            </RecipeProvider>
           </RestaurantProvider>
         </CityProvider>
       </CountryProvider>

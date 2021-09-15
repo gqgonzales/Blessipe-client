@@ -14,7 +14,9 @@ export const RestaurantList = (props) => {
 
   return (
     <>
-      {/* <button
+      <header className="restaurants__header">
+        <h1>Browse All Restaurants</h1>
+        {/* <button
         className="btn btn-2 btn-sep icon-create"
         onClick={() => {
           history.push({ pathname: "/restaurants/new" });
@@ -22,16 +24,16 @@ export const RestaurantList = (props) => {
       >
         Register New Restaurant
       </button> */}
-      <br></br>
+      </header>
       <article className="restaurants">
         {restaurants.map((restaurant) => {
           return (
             <div key={`restaurant--${restaurant.id}`} className="restaurant">
-              <div className="game__name">
-                {restaurant.name} in {restaurant.city.name},{" "}
-                {restaurant.city.country.name}
-              </div>
-              <div className="game__edit">
+              <h3 className="restaurant__name">{restaurant.name} </h3>
+              <h4>
+                in {restaurant.city.name}, {restaurant.city.country.name}
+              </h4>
+              {/* <div className="restaurant__edit">
                 <button
                   className="btn btn-3"
                   onClick={() =>
@@ -40,7 +42,7 @@ export const RestaurantList = (props) => {
                 >
                   Edit
                 </button>
-              </div>
+              </div> */}
               <button
                 className="btn btn-3"
                 onClick={() => {
