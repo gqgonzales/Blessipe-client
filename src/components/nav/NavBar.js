@@ -10,7 +10,7 @@ export const NavBar = (props) => {
   return (
     <ul className="navbar">
       <li className="navbar__item">
-        <Link to={"/"}>My Recipes</Link>
+        <Link to={"/my-recipes"}>My Recipes</Link>
       </li>
       <li className="navbar__item">
         <Link to={"/recipes"}>Browse Recipes</Link>

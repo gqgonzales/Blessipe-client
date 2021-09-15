@@ -3,7 +3,7 @@ import { RecipeContext } from "./RecipeProvider.js";
 import { useHistory } from "react-router-dom";
 import "./Recipe.css";
 
-export const RecipeList = () => {
+export const MyRecipeList = () => {
   const history = useHistory();
   const { recipes, getRecipes, deleteRecipe } = useContext(RecipeContext);
 
@@ -18,7 +18,7 @@ export const RecipeList = () => {
   return (
     <>
       <header className="recipes__header">
-        <h1>Browse All Recipes</h1>
+        <h1>My Recipes</h1>
         {/* <button
           className="btn btn-2 btn-sep icon-create"
           onClick={() => {
@@ -29,15 +29,17 @@ export const RecipeList = () => {
         </button> */}
       </header>
       <article className="recipes">
-        {sortedRecipes.map((recipe) => {
-          return (
-            <section key={recipe.id} className="all-recipes">
-              <h3 className="recipe-header">
-                {recipe.name} from {recipe.restaurant.name}
-              </h3>
-              <div>{recipe.date}</div>
-              <div>{recipe.description}</div>
-              {recipe.author ? (
+        {sortedRecipes
+          .filter((recipe) => recipe.author)
+          .map((recipe) => {
+            return (
+              <section key={recipe.id} className="all-recipes">
+                <h3 className="recipe-header">
+                  {recipe.name} from {recipe.restaurant.name}
+                </h3>
+                <div>{recipe.date}</div>
+                <div>{recipe.description}</div>
+
                 <button
                   className="btn btn-3"
                   onClick={() => {
@@ -46,10 +48,9 @@ export const RecipeList = () => {
                 >
                   Delete Entry
                 </button>
-              ) : null}
-            </section>
-          );
-        })}
+              </section>
+            );
+          })}
       </article>
     </>
   );

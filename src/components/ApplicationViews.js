@@ -10,6 +10,7 @@ import { RestaurantList } from "./restaurants/RestaurantList";
 // RECIPES
 import { RecipeProvider } from "./recipes/RecipeProvider";
 import { RecipeList } from "./recipes/RecipeList.js";
+import { MyRecipeList } from "./recipes/MyRecipeList";
 
 export const ApplicationViews = () => {
   return (
@@ -24,6 +25,10 @@ export const ApplicationViews = () => {
 
               <Route exact path="/recipes">
                 <RecipeList />
+              </Route>
+
+              <Route exact path="/my-recipes">
+                <MyRecipeList />
               </Route>
             </RecipeProvider>
           </RestaurantProvider>
