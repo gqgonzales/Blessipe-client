@@ -32,7 +32,6 @@ export const RecipeProvider = (props) => {
       },
       body: JSON.stringify(recipe),
     }).then(getRecipes);
-    // .then();
   };
 
   const editRecipe = (recipe) => {
