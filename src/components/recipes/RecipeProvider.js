@@ -15,8 +15,8 @@ export const RecipeProvider = (props) => {
       .then(setRecipes);
   };
 
-  const getRecipeById = (recipe_id) => {
-    return fetch(`http://localhost:8000/recipes/${recipe_id}`, {
+  const getRecipeById = (recipeId) => {
+    return fetch(`http://localhost:8000/recipes/${recipeId}`, {
       headers: {
         Authorization: `Token ${localStorage.getItem("bt_token")}`,
       },
@@ -46,8 +46,8 @@ export const RecipeProvider = (props) => {
     }).then(getRecipes);
   };
 
-  const deleteRecipe = (recipe_id) => {
-    return fetch(`http://localhost:8000/recipes/${recipe_id}`, {
+  const deleteRecipe = (recipeId) => {
+    return fetch(`http://localhost:8000/recipes/${recipeId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

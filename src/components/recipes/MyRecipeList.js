@@ -5,7 +5,8 @@ import "./Recipe.css";
 
 export const MyRecipeList = () => {
   const history = useHistory();
-  const { recipes, getRecipes, deleteRecipe } = useContext(RecipeContext);
+  const { recipes, getRecipes, deleteRecipe, editRecipe } =
+    useContext(RecipeContext);
 
   useEffect(() => {
     getRecipes();
@@ -39,7 +40,14 @@ export const MyRecipeList = () => {
                 </h3>
                 <div>{recipe.date}</div>
                 <div>{recipe.description}</div>
-
+                <button
+                  className="btn btn-3"
+                  onClick={() => {
+                    editRecipe(recipe.id);
+                  }}
+                >
+                  Edit Entry
+                </button>
                 <button
                   className="btn btn-3"
                   onClick={() => {
