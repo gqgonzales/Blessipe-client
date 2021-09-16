@@ -9,7 +9,7 @@ export const RecipeList = () => {
 
   useEffect(() => {
     getRecipes();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const sortedRecipes = recipes.sort((a, b) => {
     return Date.parse(b.date) - Date.parse(a.date);

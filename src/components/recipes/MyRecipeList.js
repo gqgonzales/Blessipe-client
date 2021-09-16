@@ -9,7 +9,7 @@ export const MyRecipeList = () => {
 
   useEffect(() => {
     getRecipes();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const sortedRecipes = recipes.sort((a, b) => {
     return Date.parse(b.date) - Date.parse(a.date);
@@ -43,7 +43,7 @@ export const MyRecipeList = () => {
                 <button
                   className="btn btn-3"
                   onClick={() => {
-                    deleteRecipe(recipe.id).then(history.push("/recipes"));
+                    deleteRecipe(recipe.id).then(history.push("/my-recipes"));
                   }}
                 >
                   Delete Entry

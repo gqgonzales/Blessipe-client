@@ -11,6 +11,7 @@ import { RestaurantList } from "./restaurants/RestaurantList";
 import { RecipeProvider } from "./recipes/RecipeProvider";
 import { RecipeList } from "./recipes/RecipeList.js";
 import { MyRecipeList } from "./recipes/MyRecipeList";
+import { RecipeForm } from "./recipes/RecipeForm";
 
 export const ApplicationViews = () => {
   return (
@@ -29,6 +30,10 @@ export const ApplicationViews = () => {
 
               <Route exact path="/my-recipes">
                 <MyRecipeList />
+              </Route>
+
+              <Route exact path="/new-recipe">
+                <RecipeForm />
               </Route>
             </RecipeProvider>
           </RestaurantProvider>
