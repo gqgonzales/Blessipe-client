@@ -1,11 +1,13 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useHistory } from "react-router";
+import { useHistory, useParams } from "react-router-dom";
 import { RecipeContext } from "../recipes/RecipeProvider.js";
 import { RestaurantContext } from "../restaurants/RestaurantProvider.js";
 
 export const RecipeForm = () => {
   const history = useHistory();
-  const { createRecipe } = useContext(RecipeContext);
+  const { recipe_id } = useParams();
+
+  const { createRecipe, getRecipeById, editRecipe } = useContext(RecipeContext);
   const { getRestaurants, restaurants } = useContext(RestaurantContext);
 
   const [currentRecipe, setCurrentRecipe] = useState({
@@ -19,6 +21,20 @@ export const RecipeForm = () => {
   useEffect(() => {
     getRestaurants();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (recipe_id) {
+      getRecipeById(recipe_id).then((recipe) => {
+        setCurrentRecipe({
+          traveler: recipe.traveler.id,
+          restaurant: recipe.restaurant.id,
+          name: recipe.name,
+          date: recipe.date,
+          description: recipe.description,
+        });
+      });
+    }
+  }, [recipe_id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const changeState = (domEvent) => {
     const recipeX = { ...currentRecipe };
@@ -105,25 +121,46 @@ export const RecipeForm = () => {
             />
           </div>
         </fieldset>
+        {recipe_id ? (
+          <button
+            type="submit"
+            onClick={(evt) => {
+              evt.preventDefault();
+              const thisRecipe = {
+                id: parseInt(recipe_id),
+                traveler: parseInt(currentRecipe.traveler_id),
+                restaurant: parseInt(currentRecipe.restaurant_id),
+                name: currentRecipe.name,
+                date: currentRecipe.date,
+                description: currentRecipe.description,
+              };
 
-        <button
-          type="submit"
-          onClick={(evt) => {
-            evt.preventDefault();
-            const newEvent = {
-              traveler: currentRecipe.traveler_id,
-              restaurant: currentRecipe.restaurant_id,
-              name: currentRecipe.name,
-              date: currentRecipe.date,
-              description: currentRecipe.description,
-            };
+              editRecipe(thisRecipe).then(() => history.push("/my-recipes"));
+            }}
+            className="btn btn-primary"
+          >
+            Edit Entry
+          </button>
+        ) : (
+          <button
+            type="submit"
+            onClick={(evt) => {
+              evt.preventDefault();
+              const newEvent = {
+                traveler: currentRecipe.traveler_id,
+                restaurant: currentRecipe.restaurant_id,
+                name: currentRecipe.name,
+                date: currentRecipe.date,
+                description: currentRecipe.description,
+              };
 
-            createRecipe(newEvent).then(() => history.push("/my-recipes"));
-          }}
-          className="btn btn-primary"
-        >
-          Finish Entry
-        </button>
+              createRecipe(newEvent).then(() => history.push("/my-recipes"));
+            }}
+            className="btn btn-primary"
+          >
+            Finish Entry
+          </button>
+        )}
       </form>
     </>
   );

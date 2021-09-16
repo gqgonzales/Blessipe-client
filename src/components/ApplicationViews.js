@@ -20,6 +20,7 @@ export const ApplicationViews = () => {
         <CityProvider>
           <RestaurantProvider>
             <RecipeProvider>
+              {/* --------------------------------------------- */}
               <Route exact path="/restaurants">
                 <RestaurantList />
               </Route>
@@ -32,9 +33,14 @@ export const ApplicationViews = () => {
                 <MyRecipeList />
               </Route>
 
-              <Route exact path="/new-recipe">
+              <Route exact path="/recipes/new">
                 <RecipeForm />
               </Route>
+
+              <Route path="/recipes/:recipe_id(\d+)/edit">
+                <RecipeForm />
+              </Route>
+              {/* --------------------------------------------- */}
             </RecipeProvider>
           </RestaurantProvider>
         </CityProvider>
