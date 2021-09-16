@@ -5,8 +5,7 @@ import "./Recipe.css";
 
 export const RecipeList = () => {
   const history = useHistory();
-  const { recipes, getRecipes, deleteRecipe, editRecipe } =
-    useContext(RecipeContext);
+  const { recipes, getRecipes, deleteRecipe } = useContext(RecipeContext);
 
   useEffect(() => {
     getRecipes();
