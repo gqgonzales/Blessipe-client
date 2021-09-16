@@ -42,9 +42,7 @@ export const MyRecipeList = () => {
                 <div>{recipe.description}</div>
                 <button
                   className="btn btn-3"
-                  onClick={() => {
-                    editRecipe(recipe.id);
-                  }}
+                  onClick={() => history.push(`/recipes/${recipe.id}/edit`)}
                 >
                   Edit Entry
                 </button>
