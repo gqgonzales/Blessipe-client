@@ -66,14 +66,14 @@ export const RecipeForm = () => {
             />
           </div>
         </fieldset>
-        {/* -------------- GAME --------------*/}
+        {/* -------------- RESTAURANT --------------*/}
         <fieldset>
           <div className="form-group">
             <label htmlFor="restaurant_id">Where did you eat it?</label>
             <select
-              name="restaurant_id"
+              name="restaurant"
               className="form-control"
-              value={currentRecipe.restaurant_id}
+              value={currentRecipe.restaurant}
               placeholder="Where did you eat it?"
               onChange={changeState}
             >
@@ -128,8 +128,8 @@ export const RecipeForm = () => {
               evt.preventDefault();
               const thisRecipe = {
                 id: parseInt(recipe_id),
-                traveler: parseInt(currentRecipe.traveler_id),
-                restaurant: parseInt(currentRecipe.restaurant_id),
+                traveler: parseInt(currentRecipe.traveler),
+                restaurant: parseInt(currentRecipe.restaurant),
                 name: currentRecipe.name,
                 date: currentRecipe.date,
                 description: currentRecipe.description,
@@ -147,8 +147,8 @@ export const RecipeForm = () => {
             onClick={(evt) => {
               evt.preventDefault();
               const newEvent = {
-                traveler: currentRecipe.traveler_id,
-                restaurant: currentRecipe.restaurant_id,
+                traveler: currentRecipe.traveler,
+                restaurant: currentRecipe.restaurant,
                 name: currentRecipe.name,
                 date: currentRecipe.date,
                 description: currentRecipe.description,
