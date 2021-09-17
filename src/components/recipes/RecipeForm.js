@@ -150,7 +150,12 @@ export const RecipeForm = () => {
           />
           If you have already uploaded a photo, disregard!
         </fieldset>
-
+        <button
+          className="btn back-btn"
+          onClick={() => history.push("/my-recipes")}
+        >
+          Back to Entries
+        </button>
         {recipe_id ? (
           // If there is a param (meaning we're EDITING), hit the next ternary. Otherwise, skip to line 204
           recipeImage !== "" ? (
