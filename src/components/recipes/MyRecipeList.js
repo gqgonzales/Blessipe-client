@@ -5,29 +5,11 @@ import "./Recipe.css";
 
 export const MyRecipeList = () => {
   const history = useHistory();
-  const { recipes, getRecipes, deleteRecipe, createRecipeImage } =
-    useContext(RecipeContext);
+  const { recipes, getRecipes, deleteRecipe } = useContext(RecipeContext);
 
   useEffect(() => {
     getRecipes();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  const [recipeImage, setRecipeImage] = useState("");
-  // const [isLoading, setIsLoading] = useState(false);
-
-  const getBase64 = (file, callback) => {
-    const reader = new FileReader();
-    reader.addEventListener("load", () => callback(reader.result));
-    reader.readAsDataURL(file);
-  };
-
-  const createRecipeImageString = (event) => {
-    getBase64(event.target.files[0], (base64ImageString) => {
-      console.log("Base64 of file is", base64ImageString);
-      // Update a component state variable to the value of base64ImageString
-      setRecipeImage(base64ImageString);
-    });
-  };
 
   const sortedRecipes = recipes.sort((a, b) => {
     return Date.parse(b.date) - Date.parse(a.date);
@@ -37,14 +19,6 @@ export const MyRecipeList = () => {
     <>
       <header className="recipes__header">
         <h1>My Recipes</h1>
-        {/* <button
-          className="btn btn-2 btn-sep icon-create"
-          onClick={() => {
-            history.push({ pathname: "/recipes/new" });
-          }}
-          >
-          Create a New Recipe
-        </button> */}
       </header>
       <article className="recipes">
         {sortedRecipes

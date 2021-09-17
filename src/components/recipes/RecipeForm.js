@@ -67,7 +67,9 @@ export const RecipeForm = () => {
   return (
     <>
       <form className="recipe-form">
-        <h2 className="gameForm__title">Create a New Recipe</h2>
+        <h2 className="gameForm__title">
+          {recipe_id ? <>Edit Recipe</> : <>Create a New Recipe</>}
+        </h2>
         {/* -------------- TITLE --------------*/}
         <fieldset>
           <div className="form-group">
