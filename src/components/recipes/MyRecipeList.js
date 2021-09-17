@@ -1,15 +1,33 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { RecipeContext } from "./RecipeProvider.js";
 import { useHistory } from "react-router-dom";
 import "./Recipe.css";
 
 export const MyRecipeList = () => {
   const history = useHistory();
-  const { recipes, getRecipes, deleteRecipe } = useContext(RecipeContext);
+  const { recipes, getRecipes, deleteRecipe, createRecipeImage } =
+    useContext(RecipeContext);
 
   useEffect(() => {
     getRecipes();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const [recipeImage, setRecipeImage] = useState("");
+  // const [isLoading, setIsLoading] = useState(false);
+
+  const getBase64 = (file, callback) => {
+    const reader = new FileReader();
+    reader.addEventListener("load", () => callback(reader.result));
+    reader.readAsDataURL(file);
+  };
+
+  const createRecipeImageString = (event) => {
+    getBase64(event.target.files[0], (base64ImageString) => {
+      console.log("Base64 of file is", base64ImageString);
+      // Update a component state variable to the value of base64ImageString
+      setRecipeImage(base64ImageString);
+    });
+  };
 
   const sortedRecipes = recipes.sort((a, b) => {
     return Date.parse(b.date) - Date.parse(a.date);
@@ -39,6 +57,15 @@ export const MyRecipeList = () => {
                 </h3>
                 <div>{recipe.date}</div>
                 <div>{recipe.description}</div>
+                {recipe.image != null ? (
+                  <img
+                    className="recipe-image"
+                    src={recipe.image}
+                    alt={recipe.name}
+                  />
+                ) : null}
+                {/* ----------------- IMAGES ---------------- */}
+
                 <button
                   className="btn btn-3"
                   onClick={() => history.push(`/recipes/${recipe.id}/edit`)}

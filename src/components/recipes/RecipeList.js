@@ -1,24 +1,23 @@
 import React, { useContext, useEffect, useState } from "react";
 import { RecipeContext } from "./RecipeProvider.js";
-import { RecipeImageContext } from "./RecipeImageProvider.js";
 import { useHistory } from "react-router-dom";
 import "./Recipe.css";
 
 export const RecipeList = () => {
   const history = useHistory();
-  const { recipes, getRecipes, deleteRecipe } = useContext(RecipeContext);
-  const uploadRecipeImage = useContext(RecipeImageContext);
+  const { recipes, getRecipes, deleteRecipe, getRecipeImages } =
+    useContext(RecipeContext);
 
   useEffect(() => {
-    getRecipes();
+    getRecipes().then(getRecipeImages);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const sortedRecipes = recipes.sort((a, b) => {
     return Date.parse(b.date) - Date.parse(a.date);
   });
 
-  const { recipeImage, setRecipeImage } = useState("");
-  const { isLoading, setIsLoading } = useState(false);
+  const [recipeImage, setRecipeImage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const getBase64 = (file, callback) => {
     const reader = new FileReader();
@@ -56,10 +55,17 @@ export const RecipeList = () => {
               </h3>
               <div>{recipe.date}</div>
               <div>{recipe.description}</div>
+              {recipe.image != null ? (
+                <img
+                  className="recipe-image"
+                  src={recipe.image}
+                  alt={recipe.name}
+                />
+              ) : null}
               {recipe.author ? (
                 <>
                   {/* BEGIN ---- IMAGE BUTTON */}
-                  <input
+                  {/* <input
                     type="file"
                     id="recipe_image"
                     onChange={createRecipeImageString}
@@ -73,7 +79,7 @@ export const RecipeList = () => {
                   >
                     Upload
                   </button>
-                  <br></br>
+                  <br></br> */}
                   {/*END ---- IMAGE BUTTON */}
                   <button
                     className="btn btn-3"

@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { RecipeContext } from "../recipes/RecipeProvider.js";
-// import { RecipeImageContext } from "./RecipeImageProvider.js";
 import { RestaurantContext } from "../restaurants/RestaurantProvider.js";
 
 export const RecipeForm = () => {
@@ -9,8 +8,8 @@ export const RecipeForm = () => {
   const { recipe_id } = useParams();
 
   const { createRecipe, getRecipeById, editRecipe } = useContext(RecipeContext);
-  // const { uploadRecipeImage, getRecipeImages } = useContext(RecipeImageContext);
   const { getRestaurants, restaurants } = useContext(RestaurantContext);
+  const [recipeImage, setRecipeImage] = useState(false);
 
   const [currentRecipe, setCurrentRecipe] = useState({
     traveler: 0,
@@ -18,10 +17,9 @@ export const RecipeForm = () => {
     name: "",
     date: "",
     description: "",
+    image: "",
   });
-
-  const [recipeImage, setRecipeImage] = useState("");
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getRestaurants();
@@ -36,6 +34,7 @@ export const RecipeForm = () => {
           name: recipe.name,
           date: recipe.date,
           description: recipe.description,
+          image: recipe.image,
         });
       });
     }
@@ -51,55 +50,19 @@ export const RecipeForm = () => {
     return a.name.localeCompare(b.name);
   });
 
-  const cloudinaryUpload = async (e) => {
-    const files = e.target.files; //get the files that have been selected by the user
-    const data = new FormData(); //
-    data.append("file", files[0]); //get file that has been uploaded
-    data.append("upload_preset", "recipe_images"); // get the preset
-    setLoading(true); //changing value from false to true
-    const res = await fetch(
-      "https://api.cloudinary.com/v1_1/gqgonzales/image/upload",
-
-      {
-        method: "POST",
-        body: data,
-        Authorization: `Token ${localStorage.getItem("bt_token")}`,
-      }
-    );
-    const file = await res.json();
-    console.log(file);
-
-    setRecipeImage(file.secure_url);
-    setLoading(false);
+  const getBase64 = (file, callback) => {
+    const reader = new FileReader();
+    reader.addEventListener("load", () => callback(reader.result));
+    reader.readAsDataURL(file);
   };
 
-  // const getBase64 = (file, callback) => {
-  //   const reader = new FileReader();
-  //   reader.addEventListener("load", () => callback(reader.result));
-  //   reader.readAsDataURL(file);
-  // };
-
-  // const createRecipeImageString = (event) => {
-  //   getBase64(event.target.files[0], (base64ImageString) => {
-  //     console.log("Base64 of file is", base64ImageString);
-  //     setRecipeImage(base64ImageString);
-  //     // Update a component state variable to the value of base64ImageString
-  //   });
-  // };
-
-  // const handleSaveRecipe = () => {
-  //   setLoading(true);
-  //   createRecipe(newRecipe)
-  //     .then((res) => {
-  //       uploadRecipeImage({
-  //         recipe: res.id,
-  //         travler: res.id,
-  //         recipeImage: recipeImage,
-  //       });
-  //     })
-  //     .then(getRecipes)
-  //     .then(() => history.push("/my-recipes"));
-  // };
+  const createRecipeImageString = (event) => {
+    getBase64(event.target.files[0], (base64ImageString) => {
+      // console.log("Base64 of file is", base64ImageString);
+      // Update a component state variable to the value of base64ImageString
+      setRecipeImage(base64ImageString);
+    });
+  };
 
   return (
     <>
@@ -176,47 +139,60 @@ export const RecipeForm = () => {
             />
           </div>
         </fieldset>
-        {/* -------------- IMAGE UPLOAD V2  -------------- */}
-        <div className="upload-img">
-          <h5>Upload Image</h5>
+        {/* -------------- IMAGE UPLOAD v1  -------------- */}
+        <fieldset>
+          <label htmlFor="image"> Upload a photo of the dish: </label>
           <input
-            // ref={register}
-            name="recipe_image"
             type="file"
-            onChange={cloudinaryUpload}
+            id="image"
+            name="image"
+            onChange={createRecipeImageString}
           />
-          {loading ? (
-            <h3>Fetching...</h3>
-          ) : (
-            <img
-              src={recipeImage}
-              style={{ width: "250px" }}
-              alt="recently uploaded food"
-            />
-          )}
-        </div>
-        {/* -------------- IMAGE UPLOAD V2  -------------- */}
+          If you have already uploaded a photo, disregard!
+        </fieldset>
 
         {recipe_id ? (
-          <button
-            type="submit"
-            onClick={(evt) => {
-              evt.preventDefault();
-              const thisRecipe = {
-                id: parseInt(recipe_id),
-                traveler: parseInt(currentRecipe.traveler),
-                restaurant: parseInt(currentRecipe.restaurant),
-                name: currentRecipe.name,
-                date: currentRecipe.date,
-                description: currentRecipe.description,
-              };
-
-              editRecipe(thisRecipe).then(() => history.push("/my-recipes"));
-            }}
-            className="btn btn-primary"
-          >
-            Edit Entry
-          </button>
+          recipeImage ? (
+            <button
+              type="submit"
+              onClick={(evt) => {
+                evt.preventDefault();
+                const thisRecipe = {
+                  id: parseInt(recipe_id),
+                  traveler: parseInt(currentRecipe.traveler),
+                  restaurant: parseInt(currentRecipe.restaurant),
+                  name: currentRecipe.name,
+                  date: currentRecipe.date,
+                  description: currentRecipe.description,
+                  image: recipeImage,
+                };
+                editRecipe(thisRecipe).then(() => history.push("/my-recipes"));
+              }}
+              className="btn btn-primary"
+            >
+              Edit Entry
+            </button>
+          ) : (
+            <button
+              type="submit"
+              onClick={(evt) => {
+                evt.preventDefault();
+                const thisRecipe = {
+                  id: parseInt(recipe_id),
+                  traveler: parseInt(currentRecipe.traveler),
+                  restaurant: parseInt(currentRecipe.restaurant),
+                  name: currentRecipe.name,
+                  date: currentRecipe.date,
+                  description: currentRecipe.description,
+                  image: currentRecipe.image,
+                };
+                editRecipe(thisRecipe).then(() => history.push("/my-recipes"));
+              }}
+              className="btn btn-primary"
+            >
+              Edit Entry
+            </button>
+          )
         ) : (
           <button
             type="submit"
@@ -228,8 +204,8 @@ export const RecipeForm = () => {
                 name: currentRecipe.name,
                 date: currentRecipe.date,
                 description: currentRecipe.description,
+                image: recipeImage,
               };
-
               createRecipe(newRecipe).then(() => history.push("/my-recipes"));
             }}
             className="btn btn-primary"
