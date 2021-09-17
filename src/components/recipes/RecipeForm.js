@@ -9,6 +9,7 @@ export const RecipeForm = () => {
 
   const { createRecipe, getRecipeById, editRecipe } = useContext(RecipeContext);
   const { getRestaurants, restaurants } = useContext(RestaurantContext);
+  const [recipeImage, setRecipeImage] = useState("");
 
   const [currentRecipe, setCurrentRecipe] = useState({
     traveler: 0,
@@ -16,7 +17,9 @@ export const RecipeForm = () => {
     name: "",
     date: "",
     description: "",
+    image: "",
   });
+  // const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getRestaurants();
@@ -31,6 +34,7 @@ export const RecipeForm = () => {
           name: recipe.name,
           date: recipe.date,
           description: recipe.description,
+          image: recipe.image,
         });
       });
     }
@@ -46,10 +50,26 @@ export const RecipeForm = () => {
     return a.name.localeCompare(b.name);
   });
 
+  const getBase64 = (file, callback) => {
+    const reader = new FileReader();
+    reader.addEventListener("load", () => callback(reader.result));
+    reader.readAsDataURL(file);
+  };
+
+  const createRecipeImageString = (event) => {
+    getBase64(event.target.files[0], (base64ImageString) => {
+      // console.log("Base64 of file is", base64ImageString);
+      // Update a component state variable to the value of base64ImageString
+      setRecipeImage(base64ImageString);
+    });
+  };
+
   return (
     <>
       <form className="recipe-form">
-        <h2 className="gameForm__title">Create a New Recipe</h2>
+        <h2 className="gameForm__title">
+          {recipe_id ? <>Edit Recipe</> : <>Create a New Recipe</>}
+        </h2>
         {/* -------------- TITLE --------------*/}
         <fieldset>
           <div className="form-group">
@@ -89,10 +109,10 @@ export const RecipeForm = () => {
         {/* -------------- DATE --------------*/}
         <fieldset>
           <div className="form-group">
-            <label htmlFor="eventDate">When did you eat it?</label>
+            <label htmlFor="date">When did you eat it?</label>
             <input
               type="date"
-              id="eventDate"
+              id="date"
               name="date"
               value={currentRecipe.date}
               required
@@ -121,40 +141,87 @@ export const RecipeForm = () => {
             />
           </div>
         </fieldset>
+        {/* -------------- IMAGE UPLOAD v1  -------------- */}
+        <fieldset>
+          <label htmlFor="image"> Upload a photo of the dish: </label>
+          <input
+            type="file"
+            id="image"
+            name="image"
+            onChange={createRecipeImageString}
+          />
+          If you have already uploaded a photo, disregard!
+        </fieldset>
+        <button
+          className="btn back-btn"
+          onClick={() => history.push("/my-recipes")}
+        >
+          Back to Entries
+        </button>
         {recipe_id ? (
-          <button
-            type="submit"
-            onClick={(evt) => {
-              evt.preventDefault();
-              const thisRecipe = {
-                id: parseInt(recipe_id),
-                traveler: parseInt(currentRecipe.traveler),
-                restaurant: parseInt(currentRecipe.restaurant),
-                name: currentRecipe.name,
-                date: currentRecipe.date,
-                description: currentRecipe.description,
-              };
-
-              editRecipe(thisRecipe).then(() => history.push("/my-recipes"));
-            }}
-            className="btn btn-primary"
-          >
-            Edit Entry
-          </button>
+          // If there is a param (meaning we're EDITING), hit the next ternary. Otherwise, skip to line 204
+          recipeImage !== "" ? (
+            // If there is a file that's been converted to string in state, hit this first ternary
+            // It assumes this is an existing recipe WITHOUT a photo.
+            // Add that imgString from state to the request.
+            // It looks something like: ""data:image/jpeg;base64,/9j/4AAQSk......" but way longer
+            <button
+              type="submit"
+              onClick={(evt) => {
+                evt.preventDefault();
+                const thisRecipe = {
+                  id: parseInt(recipe_id),
+                  traveler: parseInt(currentRecipe.traveler),
+                  restaurant: parseInt(currentRecipe.restaurant),
+                  name: currentRecipe.name,
+                  date: currentRecipe.date,
+                  description: currentRecipe.description,
+                  image: recipeImage,
+                };
+                editRecipe(thisRecipe).then(() => history.push("/my-recipes"));
+              }}
+              className="btn btn-primary"
+            >
+              Edit Entry
+            </button>
+          ) : (
+            // If no image tampering has happened, pass back whatever imgString came from django
+            // This string will look something like: "http://localhost:8000/media/recipeimages/125..."
+            <button
+              type="submit"
+              onClick={(evt) => {
+                evt.preventDefault();
+                const thisRecipe = {
+                  id: parseInt(recipe_id),
+                  traveler: parseInt(currentRecipe.traveler),
+                  restaurant: parseInt(currentRecipe.restaurant),
+                  name: currentRecipe.name,
+                  date: currentRecipe.date,
+                  description: currentRecipe.description,
+                  image: currentRecipe.image,
+                };
+                editRecipe(thisRecipe).then(() => history.push("/my-recipes"));
+              }}
+              className="btn btn-primary"
+            >
+              Edit Entry
+            </button>
+          )
         ) : (
+          // If no param was found, that means this is a new recipe we're creating!
           <button
             type="submit"
             onClick={(evt) => {
               evt.preventDefault();
-              const newEvent = {
+              const newRecipe = {
                 traveler: currentRecipe.traveler,
                 restaurant: currentRecipe.restaurant,
                 name: currentRecipe.name,
                 date: currentRecipe.date,
                 description: currentRecipe.description,
+                image: recipeImage,
               };
-
-              createRecipe(newEvent).then(() => history.push("/my-recipes"));
+              createRecipe(newRecipe).then(() => history.push("/my-recipes"));
             }}
             className="btn btn-primary"
           >

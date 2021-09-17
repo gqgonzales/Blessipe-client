@@ -19,14 +19,6 @@ export const RecipeList = () => {
     <>
       <header className="recipes__header">
         <h1>Browse All Recipes</h1>
-        {/* <button
-          className="btn btn-2 btn-sep icon-create"
-          onClick={() => {
-            history.push({ pathname: "/recipes/new" });
-          }}
-          >
-          Create a New Recipe
-        </button> */}
       </header>
       <article className="recipes">
         {sortedRecipes.map((recipe) => {
@@ -37,6 +29,13 @@ export const RecipeList = () => {
               </h3>
               <div>{recipe.date}</div>
               <div>{recipe.description}</div>
+              {recipe.image != null ? (
+                <img
+                  className="recipe-image"
+                  src={recipe.image}
+                  alt={recipe.name}
+                />
+              ) : null}
               {recipe.author ? (
                 <>
                   <button

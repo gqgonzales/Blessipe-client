@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { RecipeContext } from "./RecipeProvider.js";
 import { useHistory } from "react-router-dom";
 import "./Recipe.css";
@@ -19,14 +19,6 @@ export const MyRecipeList = () => {
     <>
       <header className="recipes__header">
         <h1>My Recipes</h1>
-        {/* <button
-          className="btn btn-2 btn-sep icon-create"
-          onClick={() => {
-            history.push({ pathname: "/recipes/new" });
-          }}
-          >
-          Create a New Recipe
-        </button> */}
       </header>
       <article className="recipes">
         {sortedRecipes
@@ -39,6 +31,15 @@ export const MyRecipeList = () => {
                 </h3>
                 <div>{recipe.date}</div>
                 <div>{recipe.description}</div>
+                {recipe.image != null ? (
+                  <img
+                    className="recipe-image"
+                    src={recipe.image}
+                    alt={recipe.name}
+                  />
+                ) : null}
+                {/* ----------------- IMAGES ---------------- */}
+
                 <button
                   className="btn btn-3"
                   onClick={() => history.push(`/recipes/${recipe.id}/edit`)}
