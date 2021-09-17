@@ -9,7 +9,7 @@ export const RecipeForm = () => {
 
   const { createRecipe, getRecipeById, editRecipe } = useContext(RecipeContext);
   const { getRestaurants, restaurants } = useContext(RestaurantContext);
-  const [recipeImage, setRecipeImage] = useState(false);
+  const [recipeImage, setRecipeImage] = useState("");
 
   const [currentRecipe, setCurrentRecipe] = useState({
     traveler: 0,
@@ -153,7 +153,7 @@ export const RecipeForm = () => {
 
         {recipe_id ? (
           // If there is a param (meaning we're EDITING), hit the next ternary. Otherwise, skip to line 204
-          recipeImage ? (
+          recipeImage !== "" ? (
             // If there is a file that's been converted to string in state, hit this first ternary
             // It assumes this is an existing recipe WITHOUT a photo.
             // Add that imgString from state to the request.
