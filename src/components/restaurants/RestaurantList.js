@@ -51,7 +51,7 @@ export const RestaurantList = (props) => {
                   );
                 }}
               >
-                Delete Event
+                Delete Restaurant
               </button>
             </div>
           );

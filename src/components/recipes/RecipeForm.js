@@ -107,10 +107,10 @@ export const RecipeForm = () => {
         {/* -------------- DATE --------------*/}
         <fieldset>
           <div className="form-group">
-            <label htmlFor="eventDate">When did you eat it?</label>
+            <label htmlFor="date">When did you eat it?</label>
             <input
               type="date"
-              id="eventDate"
+              id="date"
               name="date"
               value={currentRecipe.date}
               required
@@ -152,7 +152,12 @@ export const RecipeForm = () => {
         </fieldset>
 
         {recipe_id ? (
+          // If there is a param (meaning we're EDITING), hit the next ternary. Otherwise, skip to line 204
           recipeImage ? (
+            // If there is a file that's been converted to string in state, hit this first ternary
+            // It assumes this is an existing recipe WITHOUT a photo.
+            // Add that imgString from state to the request.
+            // It looks something like: ""data:image/jpeg;base64,/9j/4AAQSk......" but way longer
             <button
               type="submit"
               onClick={(evt) => {
@@ -173,6 +178,8 @@ export const RecipeForm = () => {
               Edit Entry
             </button>
           ) : (
+            // If no image tampering has happened, pass back whatever imgString came from django
+            // This string will look something like: "http://localhost:8000/media/recipeimages/125..."
             <button
               type="submit"
               onClick={(evt) => {
@@ -194,6 +201,7 @@ export const RecipeForm = () => {
             </button>
           )
         ) : (
+          // If no param was found, that means this is a new recipe we're creating!
           <button
             type="submit"
             onClick={(evt) => {
@@ -217,21 +225,3 @@ export const RecipeForm = () => {
     </>
   );
 };
-
-// FROM ZORBER:
-
-// const handleSaveEvent = () => {
-//   setLoading(true);
-//   addEvent(eventObj)
-//     .then((res) => {
-//       participants.forEach((singleId) => {
-//         addUserEvents({
-//           userId: singleId.id,
-//           eventId: res.id,
-//           time: "",
-//         });
-//       });
-//     })
-//     .then(getEvents)
-//     .then(() => history.push("/upcoming"));
-// };

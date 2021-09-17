@@ -43,7 +43,8 @@ export const RecipeProvider = (props) => {
         Authorization: `Token ${localStorage.getItem("bt_token")}`,
       },
       body: JSON.stringify(recipe),
-    }).then(getRecipes);
+    });
+    // .then(getRecipes);
   };
 
   const deleteRecipe = (recipeId) => {
