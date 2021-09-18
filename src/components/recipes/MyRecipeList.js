@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { RecipeContext } from "./RecipeProvider.js";
 import { useHistory } from "react-router-dom";
 import "./Recipe.css";
