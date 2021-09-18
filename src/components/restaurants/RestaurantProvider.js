@@ -56,6 +56,14 @@ export const RestaurantProvider = (props) => {
     }).then(getRestaurants);
   };
 
+  // const getTravelers = () => {
+  //   return fetch("http://localhost:8000/travelers", {
+  //     headers: {
+  //       Authorization: `Token ${localStorage.getItem("bt_token")}`,
+  //     },
+  //   }).then((response) => response.json());
+  // };
+
   return (
     <RestaurantContext.Provider
       value={{
@@ -65,6 +73,7 @@ export const RestaurantProvider = (props) => {
         getRestaurantById,
         editRestaurant,
         closeRestaurant,
+        // getTravelers,
       }}
     >
       {props.children}

@@ -2,28 +2,24 @@ import React, { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import "./Restaurant.css";
 import { RestaurantContext } from "./RestaurantProvider.js";
+// import { ProfileContext } from "../profile/ProfileProvider";
 
 export const RestaurantList = (props) => {
   const { restaurants, getRestaurants, closeRestaurant } =
     useContext(RestaurantContext);
+  // const { profile, getProfile } = useContext(ProfileContext);
+
   const history = useHistory();
 
   useEffect(() => {
     getRestaurants();
+    // getProfile();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
       <header className="restaurants__header">
         <h1>Browse All Restaurants</h1>
-        {/* <button
-        className="btn btn-2 btn-sep icon-create"
-        onClick={() => {
-          history.push({ pathname: "/restaurants/new" });
-        }}
-      >
-        Register New Restaurant
-      </button> */}
       </header>
       <article className="restaurants">
         {restaurants.map((restaurant) => {
@@ -33,26 +29,22 @@ export const RestaurantList = (props) => {
               <h4>
                 in {restaurant.city.name}, {restaurant.city.country.name}
               </h4>
-              {/* <div className="restaurant__edit">
+              <div>{restaurant.address}</div>
+              <a href={restaurant.url}>{restaurant.url}</a>
+              {/* CHANGE THIS FROM HISTORY TO CHECK TO SEE IF USER IS STAFF */}
+              {/* Maybe something like... profile.user?.user.is_staff */}
+              {history ? (
                 <button
                   className="btn btn-3"
-                  onClick={() =>
-                    history.push(`/restaurants/${restaurant.id}/edit`)
-                  }
+                  onClick={() => {
+                    closeRestaurant(restaurant.id).then(
+                      history.push("/restaurants")
+                    );
+                  }}
                 >
-                  Edit
+                  Delete Restaurant
                 </button>
-              </div> */}
-              <button
-                className="btn btn-3"
-                onClick={() => {
-                  closeRestaurant(restaurant.id).then(
-                    history.push("/restaurants")
-                  );
-                }}
-              >
-                Delete Restaurant
-              </button>
+              ) : null}
             </div>
           );
         })}
