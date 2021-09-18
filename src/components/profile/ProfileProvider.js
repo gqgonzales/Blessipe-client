@@ -7,7 +7,7 @@ export const ProfileProvider = (props) => {
 
   const getProfile = () => {
     //   ONLY RETURN PROFILE OF CURRENTLY AUTHENTICATED USER
-    return fetch("http://localhost:8000/profile", {
+    return fetch("http://localhost:8000/profiles", {
       headers: {
         Authorization: `Token ${localStorage.getItem("bt_token")}`,
       },

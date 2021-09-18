@@ -2,18 +2,18 @@ import React, { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import "./Restaurant.css";
 import { RestaurantContext } from "./RestaurantProvider.js";
-// import { ProfileContext } from "../profile/ProfileProvider";
+import { ProfileContext } from "../profile/ProfileProvider";
 
 export const RestaurantList = (props) => {
   const { restaurants, getRestaurants, closeRestaurant } =
     useContext(RestaurantContext);
-  // const { profile, getProfile } = useContext(ProfileContext);
+  const { profile, getProfile } = useContext(ProfileContext);
 
   const history = useHistory();
 
   useEffect(() => {
     getRestaurants();
-    // getProfile();
+    getProfile();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
@@ -27,13 +27,14 @@ export const RestaurantList = (props) => {
             <div key={`restaurant--${restaurant.id}`} className="restaurant">
               <h3 className="restaurant__name">{restaurant.name} </h3>
               <h4>
+                {/* INVESTIGATE WHY RESTAURANT DATA IS GONE */}
                 in {restaurant.city.name}, {restaurant.city.country.name}
               </h4>
               <div>{restaurant.address}</div>
               <a href={restaurant.url}>{restaurant.url}</a>
               {/* CHANGE THIS FROM HISTORY TO CHECK TO SEE IF USER IS STAFF */}
               {/* Maybe something like... profile.user?.user.is_staff */}
-              {history ? (
+              {profile.user?.user.is_staff ? (
                 <button
                   className="btn btn-3"
                   onClick={() => {
