@@ -36,7 +36,7 @@ export const MyRecipeList = () => {
                   </Link>
                 </h3>
                 <div>{recipe.date}</div>
-                <div>{recipe.description}</div>
+                {/* <div>{recipe.description}</div> */}
                 {recipe.image != null ? (
                   <img
                     className="recipe-image"
