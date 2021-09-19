@@ -3,11 +3,8 @@
   height: auto;
 }
 
-h2 {
-  color: #da4c4c;
-}
-
 .recipe-name-switch:hover {
+  color: #da4c4c;
   cursor: pointer;
   text-decoration: underline;
 }

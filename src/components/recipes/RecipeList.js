@@ -26,16 +26,13 @@ export const RecipeList = () => {
           return (
             <section key={recipe.id} className="all-recipes">
               <h3 className="recipe-header">
-                <Link
-                  className="recipe__link"
-                  to={`/recipes/${recipe.id}/detail`}
-                >
-                  {recipe.name} from {recipe.restaurant.name}
-                </Link>
+                {/* HOW ABOUT....... -------------------*/}
+                <RecipeDetail recipe={recipe} key={`Recipe-Card-${recipe.id}`}>
+                  {recipe.name} from {recipe.restaurant.name} in{" "}
+                  {recipe.restaurant.city.name}
+                </RecipeDetail>
               </h3>
-              <div>{recipe.date}</div>
-              {/* <div>{recipe.description}</div> */}
-              {/* <div>Keywords: {recipe.keywords.word}</div> */}
+              {/* IMAGE TERNARY */}
               {recipe.image != null ? (
                 <img
                   className="recipe-image"
@@ -43,6 +40,7 @@ export const RecipeList = () => {
                   alt={recipe.name}
                 />
               ) : null}
+              {/* AUTHOR BUTTONS TERNARY */}
               {recipe.author ? (
                 <>
                   <button

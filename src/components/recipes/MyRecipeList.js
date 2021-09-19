@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { RecipeContext } from "./RecipeProvider.js";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "./Recipe.css";
 import { RecipeDetail } from "./RecipeDetail.js";
 
@@ -28,8 +28,6 @@ export const MyRecipeList = () => {
             return (
               <section key={recipe.id} className="all-recipes">
                 <h3 className="recipe-header">
-                  {/* {recipe.name} from {recipe.restaurant.name} in{" "}
-                  {recipe.restaurant.city.name} */}
                   {/* HOW ABOUT....... -------------------*/}
                   <RecipeDetail
                     recipe={recipe}
@@ -38,10 +36,8 @@ export const MyRecipeList = () => {
                     {recipe.name} from {recipe.restaurant.name} in{" "}
                     {recipe.restaurant.city.name}
                   </RecipeDetail>
-                  {/* ----------------------------------- */}
+                  {/* ----------------- IMAGES ---------------- */}
                 </h3>
-                {/* <div>{recipe.date}</div> */}
-                {/* <div>{recipe.description}</div> */}
                 {recipe.image != null ? (
                   <img
                     className="recipe-image"
