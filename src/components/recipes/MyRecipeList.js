@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { RecipeContext } from "./RecipeProvider.js";
 import { Link, useHistory } from "react-router-dom";
 import "./Recipe.css";
+import { RecipeDetail } from "./RecipeDetail.js";
 
 export const MyRecipeList = () => {
   const history = useHistory();
@@ -27,15 +28,19 @@ export const MyRecipeList = () => {
             return (
               <section key={recipe.id} className="all-recipes">
                 <h3 className="recipe-header">
-                  <Link
-                    className="recipe__link"
-                    to={`/recipes/${recipe.id}/detail`}
+                  {/* {recipe.name} from {recipe.restaurant.name} in{" "}
+                  {recipe.restaurant.city.name} */}
+                  {/* HOW ABOUT....... -------------------*/}
+                  <RecipeDetail
+                    recipe={recipe}
+                    key={`Recipe-Card-${recipe.id}`}
                   >
                     {recipe.name} from {recipe.restaurant.name} in{" "}
                     {recipe.restaurant.city.name}
-                  </Link>
+                  </RecipeDetail>
+                  {/* ----------------------------------- */}
                 </h3>
-                <div>{recipe.date}</div>
+                {/* <div>{recipe.date}</div> */}
                 {/* <div>{recipe.description}</div> */}
                 {recipe.image != null ? (
                   <img
