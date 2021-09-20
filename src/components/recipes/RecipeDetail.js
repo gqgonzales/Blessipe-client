@@ -45,6 +45,11 @@ export const RecipeDetail = ({ recipe }) => {
           </h2>
           <div className="detail--container">
             <div>
+              <b className="recipe-author">
+                Posted by {traveler.user.first_name} {traveler.user.last_name}
+              </b>
+            </div>
+            <div>
               <b className="recipe-date">{date}</b>
             </div>
             <br></br>
@@ -66,6 +71,11 @@ export const RecipeDetail = ({ recipe }) => {
             {name} from {restaurant.name} in {restaurant.city.name}
           </h2>
           <div className="detail--container">
+            <div>
+              <b className="recipe-author">
+                Posted by {traveler.user.first_name} {traveler.user.last_name}
+              </b>
+            </div>
             <div>
               <b className="recipe-date">{date}</b>
             </div>
