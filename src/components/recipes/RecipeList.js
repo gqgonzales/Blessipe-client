@@ -25,13 +25,13 @@ export const RecipeList = () => {
         {sortedRecipes.map((recipe) => {
           return (
             <section key={recipe.id} className="all-recipes">
-              <h3 className="recipe-header">
+              <div className="recipe-header">
                 {/* HOW ABOUT....... -------------------*/}
                 <RecipeDetail recipe={recipe} key={`Recipe-Card-${recipe.id}`}>
                   {recipe.name} from {recipe.restaurant.name} in{" "}
                   {recipe.restaurant.city.name}
                 </RecipeDetail>
-              </h3>
+              </div>
               {/* IMAGE TERNARY */}
               {recipe.image != null ? (
                 <img

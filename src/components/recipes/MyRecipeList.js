@@ -27,7 +27,7 @@ export const MyRecipeList = () => {
           .map((recipe) => {
             return (
               <section key={recipe.id} className="all-recipes">
-                <h3 className="recipe-header">
+                <div className="recipe-header">
                   {/* HOW ABOUT....... -------------------*/}
                   <RecipeDetail
                     recipe={recipe}
@@ -37,7 +37,7 @@ export const MyRecipeList = () => {
                     {recipe.restaurant.city.name}
                   </RecipeDetail>
                   {/* ----------------- IMAGES ---------------- */}
-                </h3>
+                </div>
                 {recipe.image != null ? (
                   <img
                     className="recipe-image"

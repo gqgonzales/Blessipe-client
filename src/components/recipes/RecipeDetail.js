@@ -55,12 +55,16 @@ export const RecipeDetail = ({ recipe }) => {
             <br></br>
             <div className="recipe-description">{description}</div>
             <br></br>
-            <div>
+            <div className="recipe-keywords">
               Keywords:{" "}
               {keywords?.map((keyword) => (
                 <div key={`keyword-id-${keyword.id}`}>– {keyword.word}</div>
               ))}
             </div>
+            {/* --------------- FIND MATCHES --------------- */}
+            <br></br>
+            <button className="button match-button">Find Matches</button>
+            {/* --------------- FIND MATCHES --------------- */}
           </div>
           <br></br>
         </>
