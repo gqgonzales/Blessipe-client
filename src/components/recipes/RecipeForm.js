@@ -182,7 +182,7 @@ export const RecipeForm = () => {
               }}
               className="btn btn-primary"
             >
-              Edit Entry
+              Save Edit
             </button>
           ) : (
             // If no image tampering has happened, pass back whatever imgString came from django
@@ -204,7 +204,7 @@ export const RecipeForm = () => {
               }}
               className="btn btn-primary"
             >
-              Edit Entry
+              Save Edit
             </button>
           )
         ) : (

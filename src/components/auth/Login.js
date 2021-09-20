@@ -25,7 +25,7 @@ export const Login = (props) => {
       .then((res) => {
         if ("valid" in res && res.valid && "token" in res) {
           localStorage.setItem("bt_token", res.token);
-          props.history.push("/");
+          props.history.push("/my-recipes");
         } else {
           invalidDialog.current.showModal();
         }

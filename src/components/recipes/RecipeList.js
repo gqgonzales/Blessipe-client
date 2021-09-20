@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { RecipeContext } from "./RecipeProvider.js";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "./Recipe.css";
 import { RecipeDetail } from "./RecipeDetail.js";
 
