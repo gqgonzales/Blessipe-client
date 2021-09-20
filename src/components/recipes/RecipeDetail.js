@@ -1,6 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router";
-import { RecipeContext } from "./RecipeProvider";
+import React, { useState } from "react";
 
 import "./Recipe.css";
 
@@ -16,24 +14,17 @@ export const RecipeDetail = ({ recipe }) => {
     restaurant,
   } = recipe;
 
-  const { getRecipeById } = useContext(RecipeContext);
-
-  // const { recipe_id } = useParams();
-  const history = useHistory();
-
-  // const [recipe, setRecipe] = useState({});
-  // const [keywords, setKeywords] = useState([]);
-
-  // useEffect(() => {
-  //   getRecipeById(recipe_id).then((recipe) => setRecipe(recipe));
-  // }, [recipe_id]);
-
-  // useEffect(() => {
-  //   setKeywords(keywords);
-  // }, [recipe]);
-
   const [showDetails, setShowDetails] = useState(false);
   const toggleDetails = () => setShowDetails(!showDetails);
+
+  const [showKeyordEntry, setShowKeywordEntry] = useState(false);
+  const toggleKeywordEntry = () => setShowKeywordEntry(!showKeyordEntry);
+
+  const [enteredKeyword, setEnteredKeyword] = useState("");
+
+  const handleKeywordEntryChange = (event) => {
+    setEnteredKeyword(event.target.value);
+  };
 
   return (
     <>
@@ -61,6 +52,35 @@ export const RecipeDetail = ({ recipe }) => {
                 <div key={`keyword-id-${keyword.id}`}>– {keyword.word}</div>
               ))}
             </div>
+            {/* --------------- ADD KEYWORDS --------------- */}
+            {showKeyordEntry ? (
+              <>
+                <input
+                  type="text"
+                  className="keyword__input"
+                  name="new-keyword"
+                  placeholder="Add a keyword..."
+                  value={enteredKeyword}
+                  onChange={handleKeywordEntryChange}
+                ></input>
+                {/* SAVE STILL NEEDS ATTENTION */}
+                <button className="button save-keyword">Save Keyword</button>
+                <button
+                  className="button cancel-button"
+                  onClick={() => toggleKeywordEntry()}
+                >
+                  Cancel
+                </button>
+              </>
+            ) : (
+              <button
+                className="button add-keyword"
+                onClick={() => toggleKeywordEntry()}
+              >
+                Add Keyword
+              </button>
+            )}
+            {/* --------------- ADD KEYWORDS --------------- */}
             {/* --------------- FIND MATCHES --------------- */}
             <br></br>
             <button className="button match-button">Find Matches</button>
