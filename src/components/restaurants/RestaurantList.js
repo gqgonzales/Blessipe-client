@@ -32,8 +32,15 @@ export const RestaurantList = (props) => {
               </h4>
               <div>{restaurant.address}</div>
               <a href={restaurant.url}>{restaurant.url}</a>
-              {/* CHANGE THIS FROM HISTORY TO CHECK TO SEE IF USER IS STAFF */}
-              {/* Maybe something like... profile.user?.user.is_staff */}
+              {/* ---------------------------- */}
+              <br></br>
+              <div className="restaurant-keywords">
+                Keywords:{" "}
+                {restaurant.keywords?.map((keyword) => (
+                  <div key={`keyword-id-${keyword.id}`}>– {keyword.word}</div>
+                ))}
+              </div>
+              {/* ---------------------------- */}
               {profile.user?.user.is_staff ? (
                 <button
                   className="btn btn-3"
