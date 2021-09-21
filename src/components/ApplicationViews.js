@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 // COUNTRIES
 import { CountryProvider } from "./countries/CountryProvider";
 // CITIES
@@ -25,10 +25,6 @@ export const ApplicationViews = () => {
             <RestaurantProvider>
               <RecipeProvider>
                 {/* --------------------------------------------- */}
-                {/* <Route exact path="">
-                  <Redirect to="/my-recipes" />
-                </Route> */}
-
                 <Route exact path="/restaurants">
                   <RestaurantList />
                 </Route>

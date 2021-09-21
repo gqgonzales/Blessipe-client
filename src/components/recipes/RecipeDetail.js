@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import "./Recipe.css";
+import { RecipeContext } from "./RecipeProvider";
 
 export const RecipeDetail = ({ recipe }) => {
   const {
@@ -9,10 +10,12 @@ export const RecipeDetail = ({ recipe }) => {
     description,
     date,
     keywords,
-    author,
+    // author,
     traveler,
     restaurant,
   } = recipe;
+
+  const { getRecipes, addRecipeKeyword } = useContext(RecipeContext);
 
   const [showDetails, setShowDetails] = useState(false);
   const toggleDetails = () => setShowDetails(!showDetails);
@@ -22,8 +25,20 @@ export const RecipeDetail = ({ recipe }) => {
 
   const [enteredKeyword, setEnteredKeyword] = useState("");
 
+  const [isLoading, setIsLoading] = useState(true); // eslint-disable-line no-unused-vars
+
   const handleKeywordEntryChange = (event) => {
     setEnteredKeyword(event.target.value);
+  };
+  const recipeId = id;
+
+  const saveHandlerNewKeyword = (recipeId, enteredKeyword) => {
+    setIsLoading(true);
+    addRecipeKeyword(recipeId, enteredKeyword).then(() => {
+      toggleKeywordEntry();
+      setEnteredKeyword("");
+      getRecipes();
+    });
   };
 
   return (
@@ -63,8 +78,14 @@ export const RecipeDetail = ({ recipe }) => {
                   value={enteredKeyword}
                   onChange={handleKeywordEntryChange}
                 ></input>
-                {/* SAVE STILL NEEDS ATTENTION */}
-                <button className="button save-keyword">Save Keyword</button>
+                <button
+                  className="button save-keyword"
+                  onClick={() => {
+                    saveHandlerNewKeyword(recipeId, enteredKeyword);
+                  }}
+                >
+                  Save Keyword
+                </button>
                 <button
                   className="button cancel-button"
                   onClick={() => toggleKeywordEntry()}

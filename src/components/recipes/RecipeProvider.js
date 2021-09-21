@@ -59,6 +59,23 @@ export const RecipeProvider = (props) => {
     }).then(getRecipes);
   };
 
+  const addRecipeKeyword = (recipeId, enteredKeyword) => {
+    return fetch(
+      `http://localhost:8000/recipekeywords/${recipeId}/add_recipe_keyword`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Token ${localStorage.getItem("bt_token")}`,
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          word: enteredKeyword,
+        }),
+      }
+    ).then((response) => response.json());
+  };
+
   return (
     <RecipeContext.Provider
       value={{
@@ -69,6 +86,7 @@ export const RecipeProvider = (props) => {
         getRecipeById,
         editRecipe,
         deleteRecipe,
+        addRecipeKeyword,
       }}
     >
       {props.children}
