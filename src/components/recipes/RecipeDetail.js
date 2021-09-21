@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { MatchList } from "./MatchList";
 
 import "./Recipe.css";
 import { RecipeContext } from "./RecipeProvider";
@@ -10,7 +11,7 @@ export const RecipeDetail = ({ recipe }) => {
     description,
     date,
     keywords,
-    // author,
+    author,
     traveler,
     restaurant,
   } = recipe;
@@ -67,45 +68,48 @@ export const RecipeDetail = ({ recipe }) => {
                 <div key={`keyword-id-${keyword.id}`}>– {keyword.word}</div>
               ))}
             </div>
-            {/* --------------- ADD KEYWORDS --------------- */}
-            {showKeyordEntry ? (
-              <>
-                <input
-                  type="text"
-                  className="keyword__input"
-                  name="new-keyword"
-                  placeholder="Add a keyword..."
-                  value={enteredKeyword}
-                  onChange={handleKeywordEntryChange}
-                ></input>
+            {/* --------------- ADD KEYWORDS < --------------- */}
+            {author ? (
+              showKeyordEntry ? (
+                <>
+                  <input
+                    type="text"
+                    className="keyword__input"
+                    name="new-keyword"
+                    placeholder="Add a keyword..."
+                    value={enteredKeyword}
+                    onChange={handleKeywordEntryChange}
+                  ></input>
+                  <button
+                    className="button save-keyword"
+                    onClick={() => {
+                      saveHandlerNewKeyword(recipeId, enteredKeyword);
+                    }}
+                  >
+                    Save Keyword
+                  </button>
+                  <button
+                    className="button cancel-button"
+                    onClick={() => toggleKeywordEntry()}
+                  >
+                    Cancel
+                  </button>
+                </>
+              ) : (
                 <button
-                  className="button save-keyword"
-                  onClick={() => {
-                    saveHandlerNewKeyword(recipeId, enteredKeyword);
-                  }}
-                >
-                  Save Keyword
-                </button>
-                <button
-                  className="button cancel-button"
+                  className="button add-keyword"
                   onClick={() => toggleKeywordEntry()}
                 >
-                  Cancel
+                  Add Keyword
                 </button>
-              </>
-            ) : (
-              <button
-                className="button add-keyword"
-                onClick={() => toggleKeywordEntry()}
-              >
-                Add Keyword
-              </button>
-            )}
-            {/* --------------- ADD KEYWORDS --------------- */}
-            {/* --------------- FIND MATCHES --------------- */}
+              )
+            ) : null}
+            {/* --------------- ADD KEYWORDS > --------------- */}
+            {/* --------------- FIND MATCHES < --------------- */}
             <br></br>
-            <button className="button match-button">Find Matches</button>
-            {/* --------------- FIND MATCHES --------------- */}
+            {/* <button className="button match-button">Find Matches</button> */}
+            <MatchList recipe={recipe} key={`Match-List-${recipe.id}`} />
+            {/* --------------- FIND MATCHES > --------------- */}
           </div>
           <br></br>
         </>

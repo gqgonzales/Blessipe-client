@@ -13,6 +13,7 @@ import { RecipeList } from "./recipes/RecipeList.js";
 import { MyRecipeList } from "./recipes/MyRecipeList";
 import { RecipeForm } from "./recipes/RecipeForm";
 import { RecipeDetail } from "./recipes/RecipeDetail";
+import { MatchList } from "./recipes/MatchList";
 // PROFILE
 import { ProfileProvider } from "./profile/ProfileProvider";
 
@@ -47,6 +48,10 @@ export const ApplicationViews = () => {
 
                 <Route path="/recipes/:recipe_id(\d+)/edit">
                   <RecipeForm />
+                </Route>
+
+                <Route exact path="/recipes/:recipe_id(\d+)/matches">
+                  <MatchList />
                 </Route>
                 {/* --------------------------------------------- */}
               </RecipeProvider>
