@@ -1,0 +1,13 @@
+.favorite-heart-outline:hover {
+  color: #da4c4c;
+  cursor: pointer;
+}
+
+.favorite-heart-full {
+  color: #da4c4c;
+}
+
+.favorite-heart-full:hover {
+  color: black;
+  cursor: pointer;
+}
