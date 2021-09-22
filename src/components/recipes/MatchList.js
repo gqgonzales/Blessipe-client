@@ -8,7 +8,7 @@ import "../restaurants/Restaurant.css";
 export const MatchList = ({ recipe }) => {
   const { id } = recipe;
   const { findLocalRestaurants } = useContext(RecipeContext);
-  const { favoriteThisRestaurant, unfavoriteThisRestaurant } =
+  const { getRestaurants, favoriteThisRestaurant, unfavoriteThisRestaurant } =
     useContext(RestaurantContext);
 
   const [matchedRestaurants, setMatchedRestaurants] = useState([]);
@@ -19,6 +19,10 @@ export const MatchList = ({ recipe }) => {
   useEffect(() => {
     findLocalRestaurants(id).then(setMatchedRestaurants);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    findLocalRestaurants(id).then(setMatchedRestaurants);
+  }, [favoriteThisRestaurant, unfavoriteThisRestaurant]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
@@ -70,12 +74,18 @@ export const MatchList = ({ recipe }) => {
                           className="favorite-heart-full"
                           onClick={() =>
                             unfavoriteThisRestaurant(restaurant.id)
+                              .then(getRestaurants)
+                              .then(findLocalRestaurants(id))
                           }
                         />
                       ) : (
                         <FavoriteBorderIcon
                           className="favorite-heart-outline"
-                          onClick={() => favoriteThisRestaurant(restaurant.id)}
+                          onClick={() =>
+                            favoriteThisRestaurant(restaurant.id)
+                              .then(getRestaurants)
+                              .then(findLocalRestaurants(id))
+                          }
                         />
                       )}
                       {/* ---------------------------- */}

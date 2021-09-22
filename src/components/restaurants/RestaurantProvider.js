@@ -65,7 +65,8 @@ export const RestaurantProvider = (props) => {
           Authorization: `Token ${localStorage.getItem("bt_token")}`,
         },
       }
-    ).then(getRestaurants);
+    );
+    // .then(getRestaurants);
   };
 
   const favoriteThisRestaurant = (restaurantId) => {
@@ -77,9 +78,8 @@ export const RestaurantProvider = (props) => {
           Authorization: `Token ${localStorage.getItem("bt_token")}`,
         },
       }
-    )
-      .then((response) => response.json())
-      .then(getRestaurants);
+    ).then((response) => response.json());
+    // .then(getRestaurants);
   };
 
   return (

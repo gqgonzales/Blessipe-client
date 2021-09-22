@@ -51,12 +51,16 @@ export const RestaurantList = (props) => {
               {restaurant.favorited ? (
                 <FavoriteIcon
                   className="favorite-heart-full"
-                  onClick={() => unfavoriteThisRestaurant(restaurant.id)}
+                  onClick={() =>
+                    unfavoriteThisRestaurant(restaurant.id).then(getRestaurants)
+                  }
                 />
               ) : (
                 <FavoriteBorderIcon
                   className="favorite-heart-outline"
-                  onClick={() => favoriteThisRestaurant(restaurant.id)}
+                  onClick={() =>
+                    favoriteThisRestaurant(restaurant.id).then(getRestaurants)
+                  }
                 />
               )}
               {/* ---------------------------- */}
