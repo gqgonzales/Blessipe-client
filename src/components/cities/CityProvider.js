@@ -7,9 +7,10 @@ export const CityProvider = (props) => {
 
   const getCities = () => {
     return fetch("http://localhost:8000/cities", {
-      headers: {
-        Authorization: `Token ${localStorage.getItem("bt_token")}`,
-      },
+      // Authentication is no longer needed to retrieve cities!
+      // headers: {
+      //   Authorization: `Token ${localStorage.getItem("bt_token")}`,
+      // },
     })
       .then((response) => response.json())
       .then(setCities);

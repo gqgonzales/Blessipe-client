@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { RecipeContext } from "./RecipeProvider.js";
 import { useHistory } from "react-router-dom";
 import "./Recipe.css";
+import { RecipeDetail } from "./RecipeDetail.js";
 
 export const RecipeList = () => {
   const history = useHistory();
@@ -24,11 +25,14 @@ export const RecipeList = () => {
         {sortedRecipes.map((recipe) => {
           return (
             <section key={recipe.id} className="all-recipes">
-              <h3 className="recipe-header">
-                {recipe.name} from {recipe.restaurant.name}
-              </h3>
-              <div>{recipe.date}</div>
-              <div>{recipe.description}</div>
+              <div className="recipe-header">
+                {/* HOW ABOUT....... -------------------*/}
+                <RecipeDetail recipe={recipe} key={`Recipe-Card-${recipe.id}`}>
+                  {recipe.name} from {recipe.restaurant.name} in{" "}
+                  {recipe.restaurant.city.name}
+                </RecipeDetail>
+              </div>
+              {/* IMAGE TERNARY */}
               {recipe.image != null ? (
                 <img
                   className="recipe-image"
@@ -36,6 +40,7 @@ export const RecipeList = () => {
                   alt={recipe.name}
                 />
               ) : null}
+              {/* AUTHOR BUTTONS TERNARY */}
               {recipe.author ? (
                 <>
                   <button

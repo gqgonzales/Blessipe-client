@@ -2,3 +2,9 @@
   max-width: 250px;
   height: auto;
 }
+
+.recipe-name-switch:hover {
+  color: #da4c4c;
+  cursor: pointer;
+  text-decoration: underline;
+}

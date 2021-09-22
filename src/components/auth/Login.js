@@ -1,11 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./Auth.css";
 
 export const Login = (props) => {
   const email = React.createRef();
   const password = React.createRef();
   const invalidDialog = React.createRef();
+  const history = useHistory();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -25,7 +26,7 @@ export const Login = (props) => {
       .then((res) => {
         if ("valid" in res && res.valid && "token" in res) {
           localStorage.setItem("bt_token", res.token);
-          props.history.push("/");
+          history.push("/my-recipes");
         } else {
           invalidDialog.current.showModal();
         }

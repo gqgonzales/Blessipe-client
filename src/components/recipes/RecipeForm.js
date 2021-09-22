@@ -19,7 +19,6 @@ export const RecipeForm = () => {
     description: "",
     image: "",
   });
-  // const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getRestaurants();
@@ -67,9 +66,9 @@ export const RecipeForm = () => {
   return (
     <>
       <form className="recipe-form">
-        <h2 className="gameForm__title">
+        <h1 className="gameForm__title">
           {recipe_id ? <>Edit Recipe</> : <>Create a New Recipe</>}
-        </h2>
+        </h1>
         {/* -------------- TITLE --------------*/}
         <fieldset>
           <div className="form-group">
@@ -150,7 +149,7 @@ export const RecipeForm = () => {
             name="image"
             onChange={createRecipeImageString}
           />
-          If you have already uploaded a photo, disregard!
+          {currentRecipe.image ? <>Entry already has an image!</> : null}
         </fieldset>
         <button
           className="btn back-btn"
@@ -159,7 +158,7 @@ export const RecipeForm = () => {
           Back to Entries
         </button>
         {recipe_id ? (
-          // If there is a param (meaning we're EDITING), hit the next ternary. Otherwise, skip to line 204
+          // If there is a param (meaning we're EDITING), hit the next ternary. Otherwise, skip to line 210
           recipeImage !== "" ? (
             // If there is a file that's been converted to string in state, hit this first ternary
             // It assumes this is an existing recipe WITHOUT a photo.
@@ -182,7 +181,7 @@ export const RecipeForm = () => {
               }}
               className="btn btn-primary"
             >
-              Edit Entry
+              Save Edit
             </button>
           ) : (
             // If no image tampering has happened, pass back whatever imgString came from django
@@ -204,7 +203,7 @@ export const RecipeForm = () => {
               }}
               className="btn btn-primary"
             >
-              Edit Entry
+              Save Edit
             </button>
           )
         ) : (
