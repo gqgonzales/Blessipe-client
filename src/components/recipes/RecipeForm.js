@@ -19,7 +19,6 @@ export const RecipeForm = () => {
     description: "",
     image: "",
   });
-  // const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getRestaurants();
@@ -150,7 +149,7 @@ export const RecipeForm = () => {
             name="image"
             onChange={createRecipeImageString}
           />
-          If you have already uploaded a photo, disregard!
+          {currentRecipe.image ? <>Entry already has an image!</> : null}
         </fieldset>
         <button
           className="btn back-btn"
@@ -159,7 +158,7 @@ export const RecipeForm = () => {
           Back to Entries
         </button>
         {recipe_id ? (
-          // If there is a param (meaning we're EDITING), hit the next ternary. Otherwise, skip to line 204
+          // If there is a param (meaning we're EDITING), hit the next ternary. Otherwise, skip to line 210
           recipeImage !== "" ? (
             // If there is a file that's been converted to string in state, hit this first ternary
             // It assumes this is an existing recipe WITHOUT a photo.

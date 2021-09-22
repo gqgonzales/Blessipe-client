@@ -4,6 +4,8 @@ import { ApplicationViews } from "./ApplicationViews";
 import { NavBar } from "./nav/NavBar";
 import { Login } from "./auth/Login";
 import { Register } from "./auth/Register";
+import { CityProvider } from "./cities/CityProvider";
+import { CountryProvider } from "./countries/CountryProvider";
 
 export const Blessipe = () => (
   <>
@@ -21,8 +23,15 @@ export const Blessipe = () => (
         }
       }}
     />
-
-    <Route path="/login" render={Login} />
-    <Route path="/register" render={Register} />
+    <CountryProvider>
+      <CityProvider>
+        <Route path="/login">
+          <Login />
+        </Route>
+        <Route path="/register">
+          <Register />
+        </Route>
+      </CityProvider>
+    </CountryProvider>
   </>
 );

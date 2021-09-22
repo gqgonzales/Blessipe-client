@@ -27,11 +27,11 @@ export const RestaurantList = (props) => {
             <div key={`restaurant--${restaurant.id}`} className="restaurant">
               <h3 className="restaurant__name">{restaurant.name} </h3>
               <h4>
-                {/* INVESTIGATE WHY RESTAURANT DATA IS GONE */}
                 in {restaurant.city.name}, {restaurant.city.country.name}
               </h4>
               <div>{restaurant.address}</div>
               <a href={restaurant.url}>{restaurant.url}</a>
+              <div>{restaurant.phone_number}</div>
               {/* ---------------------------- */}
               <br></br>
               <div className="restaurant-keywords">
@@ -42,6 +42,7 @@ export const RestaurantList = (props) => {
               </div>
               {/* ---------------------------- */}
               {profile.user?.user.is_staff ? (
+                // If admin, allow delete button to appear
                 <button
                   className="btn btn-3"
                   onClick={() => {
