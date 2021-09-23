@@ -23,6 +23,9 @@ export const NavBar = (props) => {
           <Link to={"/restaurants"}>Restaurants</Link>
         </li>
         <li className="navbar__item">
+          <Link to={"/restaurants/favorites"}>Favorites</Link>
+        </li>
+        <li className="navbar__item">
           <Link to={"/about"}>About</Link>
         </li>
         {localStorage.getItem("bt_token") !== null ? (

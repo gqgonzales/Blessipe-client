@@ -7,6 +7,7 @@ import { CityProvider } from "./cities/CityProvider";
 // RESTAURANTS
 import { RestaurantProvider } from "./restaurants/RestaurantProvider";
 import { RestaurantList } from "./restaurants/RestaurantList";
+import { FavoriteRestaurants } from "./restaurants/FavoriteRestaurants";
 // RECIPES
 import { RecipeProvider } from "./recipes/RecipeProvider";
 import { RecipeList } from "./recipes/RecipeList.js";
@@ -30,6 +31,10 @@ export const ApplicationViews = () => {
                 {/* --------------------------------------------- */}
                 <Route exact path="/restaurants">
                   <RestaurantList />
+                </Route>
+
+                <Route exact path="/restaurants/favorites">
+                  <FavoriteRestaurants />
                 </Route>
 
                 <Route exact path="/recipes">

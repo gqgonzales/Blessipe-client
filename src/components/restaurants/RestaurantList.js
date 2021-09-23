@@ -64,7 +64,6 @@ export const RestaurantList = (props) => {
                 />
               )}
               {/* ---------------------------- */}
-              {/* ---------------------------- */}
               {profile.user?.user.is_staff ? (
                 // If admin, allow delete button to appear
                 <button
