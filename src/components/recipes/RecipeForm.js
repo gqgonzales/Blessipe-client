@@ -149,7 +149,15 @@ export const RecipeForm = () => {
             name="image"
             onChange={createRecipeImageString}
           />
-          {currentRecipe.image ? <>Entry already has an image!</> : null}
+          {currentRecipe.image ? (
+            <>
+              <img
+                className="edit-entry-image"
+                src={currentRecipe.image}
+                alt="currently uploaded recipe"
+              />
+            </>
+          ) : null}
         </fieldset>
         <button
           className="btn back-btn"
@@ -203,7 +211,7 @@ export const RecipeForm = () => {
               }}
               className="btn btn-primary"
             >
-              Save Edit
+              Save Changes
             </button>
           )
         ) : (

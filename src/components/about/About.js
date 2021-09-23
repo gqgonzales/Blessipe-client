@@ -17,41 +17,41 @@ export const About = () => {
         <p>
           It was spring break my senior year of college. I was in Reykjavik with
           friends and acquantenaces, some new, some old, looking for our first
-          and really, only meal of the vacation (to save money, we stuffed as
+          of very few actual meals of the vacation (to save money, we stuffed as
           much oatmeal, ramen, and granola as we could into a checked bag. It
           was communal, ok?).
         </p>
         <p>
-          Someone with data looked it up and found this old Bus station/travel
+          Someone with data looked it up and found this old bus station/travel
           hub/restaurant, and we decided to indulge ourselves in some local
-          Icelandic cuisine. When we arrived it was dimly lit but nicer than we
-          expected, wooden tables, an extensive menu, and extensive selection of
+          Icelandic cuisine. When we arrived, it was dimly lit but nicer than we
+          expected: wooden tables, a focused menu, an extensive selection of
           beverages.
         </p>
         <p>
-          On the menu with something forget: sheep space. Like the actual cut
-          face of a sheep. Not the whole head mind you, this was just half, 1/2
-          of a face, on a plate, Service sides. It didn't taste great, but at
-          the same time, there was no chance anyone at the table wasn't going to
-          at least try, was there?
+          On the wall behind the counter where you order, we saw it. Svið.
+          Sheep's face. Like the actual cut face of a sheep. Not the whole head
+          mind you, this was just half, 1/2 of a face, on a plate, served with
+          sides. It didn't taste great, but at the same time, there wasn't a
+          chance anyone at the table would pass on trying, was there?
         </p>
         <p>When in Rome, as they say.</p>
         <p>
-          Years later, I got to thinking: I wonder if there's any chance, any at
-          all, that there's somewhere in Nashville that serves somethings
-          similar. Not because I'm dying to eat sheep's face again: I want a
-          time machine to go back to that night at dinner. I want to relive the
-          little jokes, the sense of wonder; the opportunity, the possibility,
-          the adventure that felt right around the corner that first night in a
-          new country.
+          Years later, I got to thinking: I wonder if there's anywhere, anywhere
+          at all, that serves someething similar in my home town, Nashville. Not
+          because I'm dying to eat sheep's face again: I want a time machine to
+          go back to that night at dinner. I want to relive the little jokes,
+          the sense of comradery; the wonder, the possibility, the adventure
+          that felt right around the corner that first night in a new country.
+          The love I had for my friends in that moment.
         </p>
         <p>
           There's more about that night I'll never forget, but it all started
           with the breaking of bread around the dinner table. Food is so
           important when we travel because, as Tony Bourdain once said, food,
           culture, people and landscape are all absolutely inseparable. The
-          memories we make while experiencing somewhere new can so often traced
-          back to the meals we indulge in while there.
+          memories we make while experiencing somewhere new can so often be
+          traced back to the meals we indulge in while there.
         </p>
         <p>
           If this journal isn't a time machine, I hope it can be a few other

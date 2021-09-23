@@ -49,17 +49,17 @@ export const MyRecipeList = () => {
 
                 <button
                   className="btn btn-3"
-                  onClick={() => history.push(`/recipes/${recipe.id}/edit`)}
-                >
-                  Edit Entry
-                </button>
-                <button
-                  className="btn btn-3"
                   onClick={() => {
                     deleteRecipe(recipe.id).then(history.push("/my-recipes"));
                   }}
                 >
                   Delete Entry
+                </button>
+                <button
+                  className="btn btn-3"
+                  onClick={() => history.push(`/recipes/${recipe.id}/edit`)}
+                >
+                  Edit Entry
                 </button>
               </section>
             );

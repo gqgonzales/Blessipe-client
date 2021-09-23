@@ -6,8 +6,8 @@
 .about-body {
   font-size: 1.5rem;
   text-align: center;
-  padding: 2rem 13rem;
-  flex-basis: max-content;
+  padding: 2rem 15rem;
+  flex-basis: 50%;
 }
 
 .image-container {
