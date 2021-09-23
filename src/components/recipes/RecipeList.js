@@ -21,16 +21,42 @@ export const RecipeList = () => {
       <header className="recipes__header">
         <h1>Browse All Recipes</h1>
       </header>
-      <article className="recipes">
+      <article className="all-recipes">
         {sortedRecipes.map((recipe) => {
           return (
-            <section key={recipe.id} className="all-recipes">
+            <section key={recipe.id} className="recipe-entry">
               <div className="recipe-header">
                 {/* HOW ABOUT....... -------------------*/}
                 <RecipeDetail recipe={recipe} key={`Recipe-Card-${recipe.id}`}>
                   {recipe.name} from {recipe.restaurant.name} in{" "}
                   {recipe.restaurant.city.name}
                 </RecipeDetail>
+
+                {/* AUTHOR BUTTONS TERNARY */}
+                {recipe.author ? (
+                  <>
+                    <div className="button-group">
+                      <button
+                        className="btn recipe-button"
+                        onClick={() => {
+                          deleteRecipe(recipe.id).then(
+                            history.push("/recipes")
+                          );
+                        }}
+                      >
+                        Delete Entry
+                      </button>
+                      <button
+                        className="btn recipe-button"
+                        onClick={() =>
+                          history.push(`/recipes/${recipe.id}/edit`)
+                        }
+                      >
+                        Edit Entry
+                      </button>
+                    </div>
+                  </>
+                ) : null}
               </div>
               {/* IMAGE TERNARY */}
               {recipe.image != null ? (
@@ -39,25 +65,6 @@ export const RecipeList = () => {
                   src={recipe.image}
                   alt={recipe.name}
                 />
-              ) : null}
-              {/* AUTHOR BUTTONS TERNARY */}
-              {recipe.author ? (
-                <>
-                  <button
-                    className="btn btn-3"
-                    onClick={() => {
-                      deleteRecipe(recipe.id).then(history.push("/recipes"));
-                    }}
-                  >
-                    Delete Entry
-                  </button>
-                  <button
-                    className="btn btn-3"
-                    onClick={() => history.push(`/recipes/${recipe.id}/edit`)}
-                  >
-                    Edit Entry
-                  </button>
-                </>
               ) : null}
             </section>
           );

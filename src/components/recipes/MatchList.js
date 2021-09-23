@@ -32,7 +32,7 @@ export const MatchList = ({ recipe }) => {
           {matchedRestaurants.length > 0 ? (
             // If the length of the matchedRestaurants list has at least one hit, return the list using .map
             <>
-              <header className="restaurants__header">
+              <header className="matches__header">
                 <h2>See Restaurant Matches</h2>
               </header>
               <button
@@ -48,7 +48,7 @@ export const MatchList = ({ recipe }) => {
                   return (
                     <div
                       key={`restaurant--${restaurant.id}`}
-                      className="restaurant"
+                      className="match-card"
                     >
                       <h3 className="restaurant__name">{restaurant.name} </h3>
                       <h4>
@@ -69,25 +69,27 @@ export const MatchList = ({ recipe }) => {
                         ))}
                       </div>
                       {/* ---------------------------- */}
-                      {restaurant.favorited ? (
-                        <FavoriteIcon
-                          className="favorite-heart-full"
-                          onClick={() =>
-                            unfavoriteThisRestaurant(restaurant.id)
-                              .then(getRestaurants)
-                              .then(findLocalRestaurants(id))
-                          }
-                        />
-                      ) : (
-                        <FavoriteBorderIcon
-                          className="favorite-heart-outline"
-                          onClick={() =>
-                            favoriteThisRestaurant(restaurant.id)
-                              .then(getRestaurants)
-                              .then(findLocalRestaurants(id))
-                          }
-                        />
-                      )}
+                      <div className="favorite-wrapper">
+                        {restaurant.favorited ? (
+                          <FavoriteIcon
+                            className="favorite-heart-full"
+                            onClick={() =>
+                              unfavoriteThisRestaurant(restaurant.id)
+                                .then(getRestaurants)
+                                .then(findLocalRestaurants(id))
+                            }
+                          />
+                        ) : (
+                          <FavoriteBorderIcon
+                            className="favorite-heart-outline"
+                            onClick={() =>
+                              favoriteThisRestaurant(restaurant.id)
+                                .then(getRestaurants)
+                                .then(findLocalRestaurants(id))
+                            }
+                          />
+                        )}
+                      </div>
                       {/* ---------------------------- */}
                     </div>
                   );
