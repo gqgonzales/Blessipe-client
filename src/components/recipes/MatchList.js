@@ -7,7 +7,7 @@ import "../restaurants/Restaurant.css";
 
 export const MatchList = ({ recipe }) => {
   const { id } = recipe;
-  const { findLocalRestaurants } = useContext(RecipeContext);
+  const { recipes, findLocalRestaurants } = useContext(RecipeContext);
   const { getRestaurants, favoriteThisRestaurant, unfavoriteThisRestaurant } =
     useContext(RestaurantContext);
 
@@ -22,7 +22,7 @@ export const MatchList = ({ recipe }) => {
 
   useEffect(() => {
     findLocalRestaurants(id).then(setMatchedRestaurants);
-  }, [favoriteThisRestaurant, unfavoriteThisRestaurant]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [favoriteThisRestaurant, unfavoriteThisRestaurant, recipes]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>

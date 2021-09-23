@@ -72,8 +72,8 @@
 .recipe-form {
   margin: 2% 12%;
   padding: 3% 8%;
-  border: #214f4b 3px solid;
-  border-radius: 25px;
+  /* border: #214f4b 3px solid; */
+
   background-color: white;
   flex-basis: 50%;
 }

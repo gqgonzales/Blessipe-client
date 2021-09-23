@@ -23,6 +23,9 @@ export const FavoriteRestaurants = (props) => {
     getRestaurants();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  // Could you do VARIABLE = restaurants.filter((restauant) => restauant.favorited)
+  // and then: {VARIABLE.length > 0 ? ( Return favoite restaurnts ) : (No favorites yet)
+
   return (
     <>
       <header className="restaurants__header">
