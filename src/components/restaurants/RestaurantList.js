@@ -3,17 +3,24 @@ import { useHistory } from "react-router-dom";
 import "./Restaurant.css";
 import { RestaurantContext } from "./RestaurantProvider.js";
 import { ProfileContext } from "../profile/ProfileProvider";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 export const RestaurantList = (props) => {
-  const { restaurants, getRestaurants, closeRestaurant } =
-    useContext(RestaurantContext);
+  const {
+    restaurants,
+    getRestaurants,
+    closeRestaurant,
+    favoriteThisRestaurant,
+    unfavoriteThisRestaurant,
+  } = useContext(RestaurantContext);
   const { profile, getProfile } = useContext(ProfileContext);
 
   const history = useHistory();
 
   useEffect(() => {
-    getRestaurants();
     getProfile();
+    getRestaurants();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
@@ -40,6 +47,23 @@ export const RestaurantList = (props) => {
                   <div key={`keyword-id-${keyword.id}`}>– {keyword.word}</div>
                 ))}
               </div>
+              {/* ---------------------------- */}
+              {restaurant.favorited ? (
+                <FavoriteIcon
+                  className="favorite-heart-full"
+                  onClick={() =>
+                    unfavoriteThisRestaurant(restaurant.id).then(getRestaurants)
+                  }
+                />
+              ) : (
+                <FavoriteBorderIcon
+                  className="favorite-heart-outline"
+                  onClick={() =>
+                    favoriteThisRestaurant(restaurant.id).then(getRestaurants)
+                  }
+                />
+              )}
+              {/* ---------------------------- */}
               {/* ---------------------------- */}
               {profile.user?.user.is_staff ? (
                 // If admin, allow delete button to appear

@@ -56,13 +56,31 @@ export const RestaurantProvider = (props) => {
     }).then(getRestaurants);
   };
 
-  // const getTravelers = () => {
-  //   return fetch("http://localhost:8000/travelers", {
-  //     headers: {
-  //       Authorization: `Token ${localStorage.getItem("bt_token")}`,
-  //     },
-  //   }).then((response) => response.json());
-  // };
+  const unfavoriteThisRestaurant = (restaurantId) => {
+    return fetch(
+      `http://localhost:8000/restaurants/${restaurantId}/favorite_restaurant`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Token ${localStorage.getItem("bt_token")}`,
+        },
+      }
+    );
+    // .then(getRestaurants);
+  };
+
+  const favoriteThisRestaurant = (restaurantId) => {
+    return fetch(
+      `http://localhost:8000/restaurants/${restaurantId}/favorite_restaurant`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Token ${localStorage.getItem("bt_token")}`,
+        },
+      }
+    ).then((response) => response.json());
+    // .then(getRestaurants);
+  };
 
   return (
     <RestaurantContext.Provider
@@ -73,7 +91,8 @@ export const RestaurantProvider = (props) => {
         getRestaurantById,
         editRestaurant,
         closeRestaurant,
-        // getTravelers,
+        unfavoriteThisRestaurant,
+        favoriteThisRestaurant,
       }}
     >
       {props.children}

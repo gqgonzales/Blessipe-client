@@ -84,8 +84,9 @@ export const RecipeProvider = (props) => {
           Authorization: `Token ${localStorage.getItem("bt_token")}`,
         },
       }
-    ).then((response) => response.json());
-    // .then(setMatchedRestaurants);
+    )
+      .then((response) => response.json())
+      // .then(getRestaurants);
   };
 
   return (
