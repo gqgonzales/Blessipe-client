@@ -16,6 +16,8 @@ import { RecipeDetail } from "./recipes/RecipeDetail";
 import { MatchList } from "./recipes/MatchList";
 // PROFILE
 import { ProfileProvider } from "./profile/ProfileProvider";
+// ABOUT
+import { About } from "./about/About";
 
 export const ApplicationViews = () => {
   return (
@@ -52,6 +54,10 @@ export const ApplicationViews = () => {
 
                 <Route exact path="/recipes/:recipe_id(\d+)/matches">
                   <MatchList />
+                </Route>
+
+                <Route exact path="/about">
+                  <About />
                 </Route>
                 {/* --------------------------------------------- */}
               </RecipeProvider>
