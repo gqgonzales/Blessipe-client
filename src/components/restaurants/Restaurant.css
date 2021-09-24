@@ -56,3 +56,44 @@
   color: black;
   cursor: pointer;
 }
+
+a {
+  color: black;
+}
+
+a:hover {
+  cursor: pointer;
+  color: #da4c4c;
+  /* color: #e1a95f; */
+}
+
+.toggle-button {
+  justify-content: flex-end;
+}
+
+.delete-button:hover {
+  cursor: pointer;
+  background-color: #da4c4c;
+  color: white;
+}
+
+.edit-button:hover,
+.toggle-button:hover {
+  cursor: pointer;
+  background-color: #e1a95f;
+  /* color: white; */
+}
+
+.cancel-button:hover {
+  color: #da4c4c;
+  cursor: pointer;
+}
+
+.save-button:hover {
+  background-color: #e1a95f;
+}
+
+.button-group {
+  flex-direction: row;
+  max-width: fit-content;
+}

@@ -18,3 +18,7 @@ code {
 h1 {
   color: #da4c4c;
 }
+
+button:hover {
+  cursor: pointer;
+}

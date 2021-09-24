@@ -161,7 +161,7 @@ export const RecipeForm = () => {
           ) : null}
         </fieldset>
         <button
-          className="btn back-btn"
+          className="btn back-button"
           onClick={() => history.push("/my-recipes")}
         >
           Back to Entries
@@ -174,6 +174,7 @@ export const RecipeForm = () => {
             // Add that imgString from state to the request.
             // It looks something like: ""data:image/jpeg;base64,/9j/4AAQSk......" but way longer
             <button
+              className="btn save-button"
               type="submit"
               onClick={(evt) => {
                 evt.preventDefault();

@@ -35,12 +35,19 @@ export const RestaurantList = (props) => {
               key={`restaurant--${restaurant.id}`}
               className="restaurant-card"
             >
-              <h3 className="restaurant__name">{restaurant.name} </h3>
+              <h3 className="restaurant__name">
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={restaurant.url}
+                >
+                  {restaurant.name}
+                </a>
+              </h3>
               <h4 className="restaurant__locale">
                 in {restaurant.city.name}, {restaurant.city.country.name}
               </h4>
               <div>{restaurant.address}</div>
-              <a href={restaurant.url}>{restaurant.url}</a>
               <div>{restaurant.phone_number}</div>
               {/* ---------------------------- */}
               <br></br>
@@ -74,7 +81,7 @@ export const RestaurantList = (props) => {
               {profile.user?.user.is_staff ? (
                 // If admin, allow delete button to appear
                 <button
-                  className="btn btn-3"
+                  className="btn delete-button"
                   onClick={() => {
                     closeRestaurant(restaurant.id).then(
                       history.push("/restaurants")

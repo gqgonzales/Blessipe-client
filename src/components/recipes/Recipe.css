@@ -20,7 +20,7 @@
 }
 
 .recipe-header {
-  /* margin: 0 4rem 0 0; */
+  margin: 0 4rem 0 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -28,7 +28,7 @@
 .recipe-image,
 .edit-entry-image {
   width: auto;
-  max-height: 30rem;
+  max-height: 25rem;
 }
 
 .detail--container {
@@ -85,4 +85,26 @@
 .description-field {
   padding: 3rem 1rem;
   line-height: 28px;
+}
+
+.delete-button:hover {
+  cursor: pointer;
+  background-color: #da4c4c;
+  color: white;
+}
+
+.edit-button:hover,
+.toggle-button:hover {
+  cursor: pointer;
+  background-color: #e1a95f;
+  /* color: white; */
+}
+
+.cancel-button:hover {
+  color: #da4c4c;
+  cursor: pointer;
+}
+
+.save-button:hover {
+  background-color: #e1a95f;
 }

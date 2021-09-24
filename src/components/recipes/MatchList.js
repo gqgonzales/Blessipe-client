@@ -50,13 +50,20 @@ export const MatchList = ({ recipe }) => {
                       key={`restaurant--${restaurant.id}`}
                       className="match-card"
                     >
-                      <h3 className="restaurant__name">{restaurant.name} </h3>
+                      <h3 className="restaurant__name">
+                        <a
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href={restaurant.url}
+                        >
+                          {restaurant.name}
+                        </a>
+                      </h3>
                       <h4>
                         in {restaurant.city.name},{" "}
                         {restaurant.city.country.name}
                       </h4>
                       <div>{restaurant.address}</div>
-                      <a href={restaurant.url}>{restaurant.url}</a>
                       <div>{restaurant.phone_number}</div>
                       {/* ---------------------------- */}
                       <br></br>
@@ -103,6 +110,7 @@ export const MatchList = ({ recipe }) => {
                 <h2>No current matches nearby 😔</h2>
               </header>
               <div>Try adding more keywords to the recipe!</div>
+              <br></br>
               <button
                 className="button toggle-button"
                 onClick={() => {
@@ -116,14 +124,18 @@ export const MatchList = ({ recipe }) => {
         </>
       ) : (
         // If showMatches is false, display a button that flips the value to True.
-        <button
-          className="button toggle-button"
-          onClick={() => {
-            toggleMatches();
-          }}
-        >
-          Find Matches
-        </button>
+        <>
+          {/* <div className="button-group"> */}
+          <button
+            className="button toggle-button"
+            onClick={() => {
+              toggleMatches();
+            }}
+          >
+            Find Matches
+          </button>
+          {/* </div> */}
+        </>
       )}
     </>
   );

@@ -37,7 +37,7 @@ export const RecipeList = () => {
                   <>
                     <div className="button-group">
                       <button
-                        className="btn recipe-button"
+                        className="btn recipe-button delete-button"
                         onClick={() => {
                           deleteRecipe(recipe.id).then(
                             history.push("/recipes")
@@ -47,7 +47,7 @@ export const RecipeList = () => {
                         Delete Entry
                       </button>
                       <button
-                        className="btn recipe-button"
+                        className="btn recipe-button edit-button"
                         onClick={() =>
                           history.push(`/recipes/${recipe.id}/edit`)
                         }

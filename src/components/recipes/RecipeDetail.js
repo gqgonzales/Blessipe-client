@@ -72,44 +72,47 @@ export const RecipeDetail = ({ recipe }) => {
             {author ? (
               showKeyordEntry ? (
                 <>
-                  <input
-                    type="text"
-                    className="keyword__input"
-                    name="new-keyword"
-                    placeholder="Add a keyword..."
-                    value={enteredKeyword}
-                    onChange={handleKeywordEntryChange}
-                  ></input>
-                  <button
-                    className="button save-keyword"
-                    onClick={() => {
-                      saveHandlerNewKeyword(recipeId, enteredKeyword);
-                    }}
-                  >
-                    Save Keyword
-                  </button>
-                  <button
-                    className="button cancel-button"
-                    onClick={() => toggleKeywordEntry()}
-                  >
-                    Cancel
-                  </button>
+                  <div className="button-group">
+                    <input
+                      type="text"
+                      className="keyword__input"
+                      name="new-keyword"
+                      placeholder="Add a keyword..."
+                      value={enteredKeyword}
+                      onChange={handleKeywordEntryChange}
+                    ></input>
+                    <button
+                      className="button save-button"
+                      onClick={() => {
+                        saveHandlerNewKeyword(recipeId, enteredKeyword);
+                      }}
+                    >
+                      Save Keyword
+                    </button>
+                    <button
+                      className="button cancel-button"
+                      onClick={() => toggleKeywordEntry()}
+                    >
+                      Cancel
+                    </button>
+                  </div>
                 </>
               ) : (
-                <button
-                  className="button add-keyword"
-                  onClick={() => toggleKeywordEntry()}
-                >
-                  Add Keyword
-                </button>
+                <>
+                  <div className="button-group">
+                    <button
+                      className="button add-keyword"
+                      onClick={() => toggleKeywordEntry()}
+                    >
+                      Add Keyword
+                    </button>
+                  </div>
+                </>
               )
             ) : null}
-            {/* --------------- ADD KEYWORDS > --------------- */}
             {/* --------------- FIND MATCHES < --------------- */}
             <br></br>
-            {/* <button className="button match-button">Find Matches</button> */}
             <MatchList recipe={recipe} key={`Match-List-${recipe.id}`} />
-            {/* --------------- FIND MATCHES > --------------- */}
           </div>
           <br></br>
         </>
