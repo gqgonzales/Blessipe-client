@@ -28,16 +28,26 @@ export const RestaurantList = (props) => {
       <header className="restaurants__header">
         <h1>Browse All Restaurants</h1>
       </header>
-      <article className="restaurants">
+      <article className="restaurants-list">
         {restaurants.map((restaurant) => {
           return (
-            <div key={`restaurant--${restaurant.id}`} className="restaurant">
-              <h3 className="restaurant__name">{restaurant.name} </h3>
-              <h4>
+            <div
+              key={`restaurant--${restaurant.id}`}
+              className="restaurant-card"
+            >
+              <h3 className="restaurant__name">
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={restaurant.url}
+                >
+                  {restaurant.name}
+                </a>
+              </h3>
+              <h4 className="restaurant__locale">
                 in {restaurant.city.name}, {restaurant.city.country.name}
               </h4>
               <div>{restaurant.address}</div>
-              <a href={restaurant.url}>{restaurant.url}</a>
               <div>{restaurant.phone_number}</div>
               {/* ---------------------------- */}
               <br></br>
@@ -48,27 +58,30 @@ export const RestaurantList = (props) => {
                 ))}
               </div>
               {/* ---------------------------- */}
-              {restaurant.favorited ? (
-                <FavoriteIcon
-                  className="favorite-heart-full"
-                  onClick={() =>
-                    unfavoriteThisRestaurant(restaurant.id).then(getRestaurants)
-                  }
-                />
-              ) : (
-                <FavoriteBorderIcon
-                  className="favorite-heart-outline"
-                  onClick={() =>
-                    favoriteThisRestaurant(restaurant.id).then(getRestaurants)
-                  }
-                />
-              )}
-              {/* ---------------------------- */}
+              <div className="favorite-wrapper">
+                {restaurant.favorited ? (
+                  <FavoriteIcon
+                    className="favorite-heart-full"
+                    onClick={() =>
+                      unfavoriteThisRestaurant(restaurant.id).then(
+                        getRestaurants
+                      )
+                    }
+                  />
+                ) : (
+                  <FavoriteBorderIcon
+                    className="favorite-heart-outline"
+                    onClick={() =>
+                      favoriteThisRestaurant(restaurant.id).then(getRestaurants)
+                    }
+                  />
+                )}
+              </div>
               {/* ---------------------------- */}
               {profile.user?.user.is_staff ? (
                 // If admin, allow delete button to appear
                 <button
-                  className="btn btn-3"
+                  className="btn delete-button"
                   onClick={() => {
                     closeRestaurant(restaurant.id).then(
                       history.push("/restaurants")

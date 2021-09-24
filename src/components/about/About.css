@@ -1,0 +1,25 @@
+.about-header {
+  margin: 5rem 0 0 0;
+  text-align: center;
+}
+
+.about-body {
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 2rem 15rem;
+  flex-basis: 50%;
+}
+
+.image-container {
+  display: flex;
+  flex-direction: row;
+  padding: 2rem;
+  justify-content: center;
+}
+
+.about-image {
+  padding: 1rem;
+  height: 25rem;
+  width: fit-content;
+  justify-content: space-evenly;
+}

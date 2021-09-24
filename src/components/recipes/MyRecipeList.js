@@ -21,14 +21,13 @@ export const MyRecipeList = () => {
       <header className="recipes__header">
         <h1>My Recipes</h1>
       </header>
-      <article className="recipes">
+      <article className="all-recipes">
         {sortedRecipes
           .filter((recipe) => recipe.author)
           .map((recipe) => {
             return (
-              <section key={recipe.id} className="all-recipes">
+              <section key={recipe.id} className="recipe-entry">
                 <div className="recipe-header">
-                  {/* HOW ABOUT....... -------------------*/}
                   <RecipeDetail
                     recipe={recipe}
                     key={`Recipe-Card-${recipe.id}`}
@@ -36,6 +35,24 @@ export const MyRecipeList = () => {
                     {recipe.name} from {recipe.restaurant.name} in{" "}
                     {recipe.restaurant.city.name}
                   </RecipeDetail>
+                  <div className="button-group">
+                    <button
+                      className="btn recipe-button delete-button"
+                      onClick={() => {
+                        deleteRecipe(recipe.id).then(
+                          history.push("/my-recipes")
+                        );
+                      }}
+                    >
+                      Delete Entry
+                    </button>
+                    <button
+                      className="btn recipe-button edit-button"
+                      onClick={() => history.push(`/recipes/${recipe.id}/edit`)}
+                    >
+                      Edit Entry
+                    </button>
+                  </div>
                   {/* ----------------- IMAGES ---------------- */}
                 </div>
                 {recipe.image != null ? (
@@ -46,21 +63,6 @@ export const MyRecipeList = () => {
                   />
                 ) : null}
                 {/* ----------------- IMAGES ---------------- */}
-
-                <button
-                  className="btn btn-3"
-                  onClick={() => history.push(`/recipes/${recipe.id}/edit`)}
-                >
-                  Edit Entry
-                </button>
-                <button
-                  className="btn btn-3"
-                  onClick={() => {
-                    deleteRecipe(recipe.id).then(history.push("/my-recipes"));
-                  }}
-                >
-                  Delete Entry
-                </button>
               </section>
             );
           })}

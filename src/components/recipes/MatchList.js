@@ -7,7 +7,7 @@ import "../restaurants/Restaurant.css";
 
 export const MatchList = ({ recipe }) => {
   const { id } = recipe;
-  const { findLocalRestaurants } = useContext(RecipeContext);
+  const { recipes, findLocalRestaurants } = useContext(RecipeContext);
   const { getRestaurants, favoriteThisRestaurant, unfavoriteThisRestaurant } =
     useContext(RestaurantContext);
 
@@ -22,7 +22,7 @@ export const MatchList = ({ recipe }) => {
 
   useEffect(() => {
     findLocalRestaurants(id).then(setMatchedRestaurants);
-  }, [favoriteThisRestaurant, unfavoriteThisRestaurant]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [favoriteThisRestaurant, unfavoriteThisRestaurant, recipes]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
@@ -32,7 +32,7 @@ export const MatchList = ({ recipe }) => {
           {matchedRestaurants.length > 0 ? (
             // If the length of the matchedRestaurants list has at least one hit, return the list using .map
             <>
-              <header className="restaurants__header">
+              <header className="matches__header">
                 <h2>See Restaurant Matches</h2>
               </header>
               <button
@@ -48,15 +48,22 @@ export const MatchList = ({ recipe }) => {
                   return (
                     <div
                       key={`restaurant--${restaurant.id}`}
-                      className="restaurant"
+                      className="match-card"
                     >
-                      <h3 className="restaurant__name">{restaurant.name} </h3>
+                      <h3 className="restaurant__name">
+                        <a
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href={restaurant.url}
+                        >
+                          {restaurant.name}
+                        </a>
+                      </h3>
                       <h4>
                         in {restaurant.city.name},{" "}
                         {restaurant.city.country.name}
                       </h4>
                       <div>{restaurant.address}</div>
-                      <a href={restaurant.url}>{restaurant.url}</a>
                       <div>{restaurant.phone_number}</div>
                       {/* ---------------------------- */}
                       <br></br>
@@ -69,25 +76,27 @@ export const MatchList = ({ recipe }) => {
                         ))}
                       </div>
                       {/* ---------------------------- */}
-                      {restaurant.favorited ? (
-                        <FavoriteIcon
-                          className="favorite-heart-full"
-                          onClick={() =>
-                            unfavoriteThisRestaurant(restaurant.id)
-                              .then(getRestaurants)
-                              .then(findLocalRestaurants(id))
-                          }
-                        />
-                      ) : (
-                        <FavoriteBorderIcon
-                          className="favorite-heart-outline"
-                          onClick={() =>
-                            favoriteThisRestaurant(restaurant.id)
-                              .then(getRestaurants)
-                              .then(findLocalRestaurants(id))
-                          }
-                        />
-                      )}
+                      <div className="favorite-wrapper">
+                        {restaurant.favorited ? (
+                          <FavoriteIcon
+                            className="favorite-heart-full"
+                            onClick={() =>
+                              unfavoriteThisRestaurant(restaurant.id)
+                                .then(getRestaurants)
+                                .then(findLocalRestaurants(id))
+                            }
+                          />
+                        ) : (
+                          <FavoriteBorderIcon
+                            className="favorite-heart-outline"
+                            onClick={() =>
+                              favoriteThisRestaurant(restaurant.id)
+                                .then(getRestaurants)
+                                .then(findLocalRestaurants(id))
+                            }
+                          />
+                        )}
+                      </div>
                       {/* ---------------------------- */}
                     </div>
                   );
@@ -101,6 +110,7 @@ export const MatchList = ({ recipe }) => {
                 <h2>No current matches nearby 😔</h2>
               </header>
               <div>Try adding more keywords to the recipe!</div>
+              <br></br>
               <button
                 className="button toggle-button"
                 onClick={() => {
@@ -114,14 +124,18 @@ export const MatchList = ({ recipe }) => {
         </>
       ) : (
         // If showMatches is false, display a button that flips the value to True.
-        <button
-          className="button toggle-button"
-          onClick={() => {
-            toggleMatches();
-          }}
-        >
-          Find Matches
-        </button>
+        <>
+          {/* <div className="button-group"> */}
+          <button
+            className="button toggle-button"
+            onClick={() => {
+              toggleMatches();
+            }}
+          >
+            Find Matches
+          </button>
+          {/* </div> */}
+        </>
       )}
     </>
   );

@@ -7,6 +7,7 @@ import { CityProvider } from "./cities/CityProvider";
 // RESTAURANTS
 import { RestaurantProvider } from "./restaurants/RestaurantProvider";
 import { RestaurantList } from "./restaurants/RestaurantList";
+import { FavoriteRestaurants } from "./restaurants/FavoriteRestaurants";
 // RECIPES
 import { RecipeProvider } from "./recipes/RecipeProvider";
 import { RecipeList } from "./recipes/RecipeList.js";
@@ -16,6 +17,8 @@ import { RecipeDetail } from "./recipes/RecipeDetail";
 import { MatchList } from "./recipes/MatchList";
 // PROFILE
 import { ProfileProvider } from "./profile/ProfileProvider";
+// ABOUT
+import { About } from "./about/About";
 
 export const ApplicationViews = () => {
   return (
@@ -28,6 +31,10 @@ export const ApplicationViews = () => {
                 {/* --------------------------------------------- */}
                 <Route exact path="/restaurants">
                   <RestaurantList />
+                </Route>
+
+                <Route exact path="/restaurants/favorites">
+                  <FavoriteRestaurants />
                 </Route>
 
                 <Route exact path="/recipes">
@@ -52,6 +59,10 @@ export const ApplicationViews = () => {
 
                 <Route exact path="/recipes/:recipe_id(\d+)/matches">
                   <MatchList />
+                </Route>
+
+                <Route exact path="/about">
+                  <About />
                 </Route>
                 {/* --------------------------------------------- */}
               </RecipeProvider>

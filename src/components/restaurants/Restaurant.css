@@ -1,3 +1,48 @@
+.restaurants__header {
+  justify-content: center;
+  text-align: center;
+  margin: 5rem 0rem;
+}
+
+.restaurants-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.restaurant-card {
+  /* border: 2px red solid; */
+  max-width: 20rem;
+  margin: 4rem 6rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.matchedRestaurants {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  max-width: fit-content;
+}
+
+.match-card {
+  /* border: 2px red solid; */
+  max-width: fit-content;
+  margin: 2rem 4rem 0 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  /* justify-content: space-around; */
+}
+.favorite-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-content: flex-end;
+}
+
 .favorite-heart-outline:hover {
   color: #da4c4c;
   cursor: pointer;
@@ -10,4 +55,45 @@
 .favorite-heart-full:hover {
   color: black;
   cursor: pointer;
+}
+
+a {
+  color: black;
+}
+
+a:hover {
+  cursor: pointer;
+  color: #da4c4c;
+  /* color: #e1a95f; */
+}
+
+.toggle-button {
+  justify-content: flex-end;
+}
+
+.delete-button:hover {
+  cursor: pointer;
+  background-color: #da4c4c;
+  color: white;
+}
+
+.edit-button:hover,
+.toggle-button:hover {
+  cursor: pointer;
+  background-color: #e1a95f;
+  /* color: white; */
+}
+
+.cancel-button:hover {
+  color: #da4c4c;
+  cursor: pointer;
+}
+
+.save-button:hover {
+  background-color: #e1a95f;
+}
+
+.button-group {
+  flex-direction: row;
+  max-width: fit-content;
 }

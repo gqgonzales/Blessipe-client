@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { RecipeContext } from "../recipes/RecipeProvider.js";
 import { RestaurantContext } from "../restaurants/RestaurantProvider.js";
+import "./Recipe.css";
 
 export const RecipeForm = () => {
   const history = useHistory();
@@ -66,7 +67,7 @@ export const RecipeForm = () => {
   return (
     <>
       <form className="recipe-form">
-        <h1 className="gameForm__title">
+        <h1 className="recipe-form__title">
           {recipe_id ? <>Edit Recipe</> : <>Create a New Recipe</>}
         </h1>
         {/* -------------- TITLE --------------*/}
@@ -99,7 +100,7 @@ export const RecipeForm = () => {
               <option value="0">Select a restaurant...</option>
               {sortedRestaurants.map((r) => (
                 <option key={r.id} value={r.id}>
-                  {r.name}
+                  {r.name} – {r.city.name}, {r.city.country.name}
                 </option>
               ))}
             </select>
@@ -133,7 +134,7 @@ export const RecipeForm = () => {
               name="description"
               required
               autoFocus
-              className="form-control"
+              className="form-control description-field"
               placeholder="Record your memories here..."
               value={currentRecipe.description}
               onChange={changeState}
@@ -149,10 +150,18 @@ export const RecipeForm = () => {
             name="image"
             onChange={createRecipeImageString}
           />
-          {currentRecipe.image ? <>Entry already has an image!</> : null}
+          {currentRecipe.image ? (
+            <>
+              <img
+                className="edit-entry-image"
+                src={currentRecipe.image}
+                alt="currently uploaded recipe"
+              />
+            </>
+          ) : null}
         </fieldset>
         <button
-          className="btn back-btn"
+          className="btn back-button"
           onClick={() => history.push("/my-recipes")}
         >
           Back to Entries
@@ -165,6 +174,7 @@ export const RecipeForm = () => {
             // Add that imgString from state to the request.
             // It looks something like: ""data:image/jpeg;base64,/9j/4AAQSk......" but way longer
             <button
+              className="btn save-button"
               type="submit"
               onClick={(evt) => {
                 evt.preventDefault();
@@ -203,7 +213,7 @@ export const RecipeForm = () => {
               }}
               className="btn btn-primary"
             >
-              Save Edit
+              Save Changes
             </button>
           )
         ) : (
