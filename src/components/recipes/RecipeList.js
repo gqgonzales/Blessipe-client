@@ -18,7 +18,7 @@ export const RecipeList = () => {
 
   return (
     <>
-      <header className="recipes__header">
+      <header className="recipes recipes__header">
         <h1>Browse All Recipes</h1>
       </header>
       <article className="all-recipes">

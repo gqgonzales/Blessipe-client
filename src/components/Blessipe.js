@@ -6,6 +6,7 @@ import { Login } from "./auth/Login";
 import { Register } from "./auth/Register";
 import { CityProvider } from "./cities/CityProvider";
 import { CountryProvider } from "./countries/CountryProvider";
+import "./nav/NavBar.css";
 
 export const Blessipe = () => (
   <>
