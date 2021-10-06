@@ -189,7 +189,6 @@ export const RecipeForm = () => {
                 };
                 editRecipe(thisRecipe).then(() => history.push("/my-recipes"));
               }}
-              className="btn btn-primary"
             >
               Save Edit
             </button>
@@ -211,7 +210,7 @@ export const RecipeForm = () => {
                 };
                 editRecipe(thisRecipe).then(() => history.push("/my-recipes"));
               }}
-              className="btn btn-primary"
+              className="btn save-button"
             >
               Save Changes
             </button>

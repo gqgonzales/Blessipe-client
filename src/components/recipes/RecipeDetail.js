@@ -57,16 +57,15 @@ export const RecipeDetail = ({ recipe }) => {
               </b>
             </div>
             <div>
-              <b className="recipe-date">{date}</b>
+              <b className="recipe-date">
+                {new Date(date).toUTCString().split(" ").slice(0, 4).join(" ")}
+              </b>
             </div>
             <br></br>
             <div className="recipe-description">{description}</div>
             <br></br>
             <div className="recipe-keywords">
-              Keywords:{" "}
-              {keywords?.map((keyword) => (
-                <div key={`keyword-id-${keyword.id}`}>– {keyword.word}</div>
-              ))}
+              Keywords: {keywords?.map((keyword) => keyword.word).join(", ")}
             </div>
             {/* --------------- ADD KEYWORDS < --------------- */}
             {author ? (
@@ -129,7 +128,9 @@ export const RecipeDetail = ({ recipe }) => {
               </b>
             </div>
             <div>
-              <b className="recipe-date">{date}</b>
+              <b className="recipe-date">
+                {new Date(date).toUTCString().split(" ").slice(0, 4).join(" ")}
+              </b>
             </div>
           </div>
           <br></br>

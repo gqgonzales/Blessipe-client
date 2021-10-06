@@ -5,7 +5,6 @@ import { RestaurantContext } from "./RestaurantProvider.js";
 import { ProfileContext } from "../profile/ProfileProvider";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { TravelExploreRounded } from "@mui/icons-material";
 
 export const FavoriteRestaurants = (props) => {
   const {
