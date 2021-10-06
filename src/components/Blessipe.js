@@ -15,12 +15,6 @@ export const Blessipe = () => (
         if (localStorage.getItem("bt_token")) {
           return (
             <>
-              <header className="main-header">
-                <h1 className="site-title">Blessipe</h1>
-                <h2 className="site-subhead">
-                  The Online Food + Travel Journal
-                </h2>
-              </header>
               <Route render={NavBar} />
               <Route render={(props) => <ApplicationViews {...props} />} />
             </>
@@ -30,6 +24,7 @@ export const Blessipe = () => (
         }
       }}
     />
+    {/* Had to wrap country/city provider to allow access to city selector for new users */}
     <CountryProvider>
       <CityProvider>
         <Route path="/login">

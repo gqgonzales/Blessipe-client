@@ -1,33 +1,50 @@
-.main-header {
-  position: sticky top;
-}
-
-.navbar {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  overflow: initial;
-}
-
-.navbar__item {
-  display: flex;
-  flex-basis: 20%;
-  list-style-type: none;
-  justify-content: space-around;
-  margin: 0.5rem 0rem;
-}
-
 @media only screen and (max-width: 600px) {
+  .main-header {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    border: 3px orange dotted;
+  }
+  .site-text {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
   .site-title {
-    /* text-align: center; */
-    font-size: 3rem;
+    font-size: 1.5rem;
+    border: 1px blue solid;
   }
   .site-subhead {
-    /* text-align: center; */
-    font-size: 1.5rem;
+    font-size: 1.15rem;
+    border: 1px navy solid;
+    height: fit-content;
+  }
+
+  .navbar {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: initial;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    border: 3px red dashed;
+  }
+  .navbar__item {
+    display: flex;
+    flex-basis: 20%;
+    list-style-type: none;
+    justify-content: space-evenly;
+    /* margin: 0.5rem; */
+    border: 1px dashed lime;
   }
 }
+
+/* ------------------------- DEVICE SPLIT ------------------------- */
+
 @media only screen and (min-width: 601px) {
+  .main-header {
+    /* position: fixed; */
+  }
   .site-title {
     text-align: center;
     font-size: 5rem;
@@ -36,5 +53,22 @@
   .site-subhead {
     text-align: center;
     font-size: 2.5rem;
+  }
+
+  .navbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow: initial;
+    /* position: fixed; */
+  }
+
+  .navbar__item {
+    display: flex;
+    flex-basis: 20%;
+    list-style-type: none;
+    justify-content: space-around;
+    margin: 0.5rem 0rem;
+    border: 1px dashed lime;
   }
 }
