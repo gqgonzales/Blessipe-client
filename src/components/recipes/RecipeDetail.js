@@ -45,6 +45,7 @@ export const RecipeDetail = ({ recipe }) => {
   return (
     <>
       {showDetails ? (
+        // If details are accessed: return post body
         <>
           <h2 className="recipe-name-switch" onClick={() => toggleDetails()}>
             {/* Show Details */}
@@ -57,56 +58,51 @@ export const RecipeDetail = ({ recipe }) => {
               </b>
             </div>
             <div>
-              <b className="recipe-date">{date}</b>
+              <b className="recipe-date">
+                {new Date(date).toUTCString().split(" ").slice(0, 4).join(" ")}
+              </b>
             </div>
             <br></br>
             <div className="recipe-description">{description}</div>
             <br></br>
             <div className="recipe-keywords">
-              Keywords:{" "}
-              {keywords?.map((keyword) => (
-                <div key={`keyword-id-${keyword.id}`}>– {keyword.word}</div>
-              ))}
+              Keywords: {keywords?.map((keyword) => keyword.word).join(", ")}
             </div>
             {/* --------------- ADD KEYWORDS < --------------- */}
             {author ? (
               showKeyordEntry ? (
                 <>
-                  <div className="button-group">
-                    <input
-                      type="text"
-                      className="keyword__input"
-                      name="new-keyword"
-                      placeholder="Add a keyword..."
-                      value={enteredKeyword}
-                      onChange={handleKeywordEntryChange}
-                    ></input>
-                    <button
-                      className="button save-button"
-                      onClick={() => {
-                        saveHandlerNewKeyword(recipeId, enteredKeyword);
-                      }}
-                    >
-                      Save Keyword
-                    </button>
-                    <button
-                      className="button cancel-button"
-                      onClick={() => toggleKeywordEntry()}
-                    >
-                      Cancel
-                    </button>
-                  </div>
+                  <input
+                    type="text"
+                    className="keyword__input"
+                    name="new-keyword"
+                    placeholder="Add a keyword..."
+                    value={enteredKeyword}
+                    onChange={handleKeywordEntryChange}
+                  ></input>
+                  <button
+                    className="button save-button"
+                    onClick={() => {
+                      saveHandlerNewKeyword(recipeId, enteredKeyword);
+                    }}
+                  >
+                    Save Keyword
+                  </button>
+                  <button
+                    className="button cancel-button"
+                    onClick={() => toggleKeywordEntry()}
+                  >
+                    Cancel
+                  </button>
                 </>
               ) : (
                 <>
-                  <div className="button-group">
-                    <button
-                      className="button add-keyword"
-                      onClick={() => toggleKeywordEntry()}
-                    >
-                      Add Keyword
-                    </button>
-                  </div>
+                  <button
+                    className="button add-keyword"
+                    onClick={() => toggleKeywordEntry()}
+                  >
+                    Add Keyword
+                  </button>
                 </>
               )
             ) : null}
@@ -117,6 +113,7 @@ export const RecipeDetail = ({ recipe }) => {
           <br></br>
         </>
       ) : (
+        // If details are hidden, only return name, location, date, and poster
         <>
           <h2 className="recipe-name-switch" onClick={() => toggleDetails()}>
             {/* Show Details */}
@@ -129,7 +126,9 @@ export const RecipeDetail = ({ recipe }) => {
               </b>
             </div>
             <div>
-              <b className="recipe-date">{date}</b>
+              <b className="recipe-date">
+                {new Date(date).toUTCString().split(" ").slice(0, 4).join(" ")}
+              </b>
             </div>
           </div>
           <br></br>

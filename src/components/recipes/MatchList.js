@@ -32,9 +32,6 @@ export const MatchList = ({ recipe }) => {
           {matchedRestaurants.length > 0 ? (
             // If the length of the matchedRestaurants list has at least one hit, return the list using .map
             <>
-              <header className="matches__header">
-                <h2>See Restaurant Matches</h2>
-              </header>
               <button
                 className="button toggle-button"
                 onClick={() => {
@@ -43,6 +40,9 @@ export const MatchList = ({ recipe }) => {
               >
                 Hide Matches
               </button>
+              <header className="matches__header">
+                <h2>Matching Restaurants Near You</h2>
+              </header>
               <article className="matchedRestaurants">
                 {matchedRestaurants.map((restaurant) => {
                   return (
@@ -69,11 +69,9 @@ export const MatchList = ({ recipe }) => {
                       <br></br>
                       <div className="restaurant-keywords">
                         Keywords:{" "}
-                        {restaurant.keywords?.map((keyword) => (
-                          <div key={`keyword-id-${keyword.id}`}>
-                            – {keyword.word}
-                          </div>
-                        ))}
+                        {restaurant.keywords
+                          ?.map((keyword) => keyword.word)
+                          .join(", ")}
                       </div>
                       {/* ---------------------------- */}
                       <div className="favorite-wrapper">

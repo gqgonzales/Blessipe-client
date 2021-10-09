@@ -1,27 +1,112 @@
-.main-header {
-  position: sticky top;
+@media only screen and (max-width: 600px) {
+  .main-header {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    border: 3px orange dotted;
+    height: fit-content;
+  }
+  .site-text {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .site-title {
+    font-size: 1.5rem;
+    border: 1px blue solid;
+  }
+  .site-subhead {
+    font-size: 1.1rem;
+    border: 1px navy solid;
+    height: fit-content;
+  }
+
+  .navbar {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: initial;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    border: 3px red dashed;
+    padding: 0;
+    margin: 0;
+    justify-content: space-evenly;
+  }
+  .navbar__item {
+    display: flex;
+    flex-basis: 20%;
+    list-style-type: none;
+
+    /* margin: 0.5rem; */
+    border: 1px dashed lime;
+  }
+
+  .navbar-collapse,
+  .navbar-expand {
+    display: flex;
+    justify-content: center;
+    border: 1px red dotted;
+    align-self: center;
+  }
+
+  .navbar-collapse:hover,
+  .navbar-expand:hover {
+    color: #da4c4c;
+    cursor: pointer;
+  }
 }
 
-.navbar {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
-  overflow: hidden;
-}
+/* ------------------------- DEVICE SPLIT ------------------------- */
 
-.navbar__item {
-  display: flex;
-  flex-basis: 20%;
-  list-style-type: none;
-  justify-content: space-around;
-}
+@media only screen and (min-width: 601px) {
+  .main-header {
+    /* position: fixed; */
+  }
+  .site-title {
+    text-align: center;
+    font-size: 5rem;
+  }
 
-.site-title {
-  text-align: center;
-  font-size: 5rem;
-}
+  .site-subhead {
+    text-align: center;
+    font-size: 2.5rem;
+  }
 
-.site-subhead {
-  text-align: center;
-  font-size: 2.5rem;
+  .navbar {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: initial;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    border: 3px red dashed;
+    padding: 0;
+    margin: 0;
+    justify-content: space-evenly;
+  }
+
+  .navbar__item {
+    display: flex;
+    flex-basis: 20%;
+    list-style-type: none;
+    justify-content: space-around;
+    margin: 0.5rem 0rem;
+    border: 1px dashed lime;
+  }
+
+  .navbar-collapse,
+  .navbar-expand {
+    display: flex;
+    justify-content: center;
+    border: 1px red dotted;
+    align-self: center;
+    width: 50%;
+  }
+
+  .navbar-collapse:hover,
+  .navbar-expand:hover {
+    color: #da4c4c;
+    cursor: pointer;
+  }
 }

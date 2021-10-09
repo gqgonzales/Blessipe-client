@@ -1,25 +1,57 @@
-.about-header {
-  margin: 5rem 0 0 0;
-  text-align: center;
+@media only screen and (max-width: 600px) {
+  .about-header {
+    margin: 1rem 0 0 0;
+    text-align: center;
+  }
+
+  .about-body {
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 1rem 2rem;
+    flex-basis: 50%;
+  }
+
+  .image-container {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    justify-content: center;
+  }
+
+  .about-image {
+    padding: 1rem;
+    height: auto;
+    width: 80%;
+    justify-content: space-evenly;
+  }
 }
 
-.about-body {
-  font-size: 1.5rem;
-  text-align: center;
-  padding: 2rem 15rem;
-  flex-basis: 50%;
-}
+/* ---------------------- SCREEN SIZE DIVIDER ---------------------- */
 
-.image-container {
-  display: flex;
-  flex-direction: row;
-  padding: 2rem;
-  justify-content: center;
-}
+@media only screen and (min-width: 601px) {
+  .about-header {
+    margin: 5rem 0 0 0;
+    text-align: center;
+  }
 
-.about-image {
-  padding: 1rem;
-  height: 25rem;
-  width: fit-content;
-  justify-content: space-evenly;
+  .about-body {
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 2rem 15rem;
+    flex-basis: 50%;
+  }
+
+  .image-container {
+    display: flex;
+    flex-direction: row;
+    padding: 2rem;
+    justify-content: center;
+  }
+
+  .about-image {
+    padding: 1rem;
+    height: 25rem;
+    width: fit-content;
+    justify-content: space-evenly;
+  }
 }

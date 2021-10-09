@@ -1,13 +1,10 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 import "./About.css";
 import group from "../media/8E4FB778-F264-4D6C-B74D-C66990A0F506_1_105_c.jpeg";
 import cam from "../media/79157D4D-600C-4FB3-8A0D-4EA11C8845F5_1_105_c.jpeg";
 import sheepy from "../media/0947295F-0F7D-4EF7-9A5E-F18D1330292C_1_105_c.jpeg";
 
 export const About = () => {
-  const history = useHistory();
-
   return (
     <>
       <header className="about-header">
