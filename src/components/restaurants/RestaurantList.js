@@ -53,9 +53,7 @@ export const RestaurantList = (props) => {
               <br></br>
               <div className="restaurant-keywords">
                 Keywords:{" "}
-                {restaurant.keywords?.map((keyword) => (
-                  <div key={`keyword-id-${keyword.id}`}>– {keyword.word}</div>
-                ))}
+                {restaurant.keywords?.map((keyword) => keyword.word).join(", ")}
               </div>
               {/* ---------------------------- */}
               <div className="favorite-wrapper">

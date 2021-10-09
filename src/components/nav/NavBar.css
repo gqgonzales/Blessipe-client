@@ -4,6 +4,7 @@
     top: 0;
     background-color: white;
     border: 3px orange dotted;
+    height: fit-content;
   }
   .site-text {
     display: flex;
@@ -15,7 +16,7 @@
     border: 1px blue solid;
   }
   .site-subhead {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     border: 1px navy solid;
     height: fit-content;
   }
@@ -28,14 +29,31 @@
     top: 0;
     background-color: white;
     border: 3px red dashed;
+    padding: 0;
+    margin: 0;
+    justify-content: space-evenly;
   }
   .navbar__item {
     display: flex;
     flex-basis: 20%;
     list-style-type: none;
-    justify-content: space-evenly;
+
     /* margin: 0.5rem; */
     border: 1px dashed lime;
+  }
+
+  .navbar-collapse,
+  .navbar-expand {
+    display: flex;
+    justify-content: center;
+    border: 1px red dotted;
+    align-self: center;
+  }
+
+  .navbar-collapse:hover,
+  .navbar-expand:hover {
+    color: #da4c4c;
+    cursor: pointer;
   }
 }
 
@@ -58,9 +76,14 @@
   .navbar {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     overflow: initial;
-    /* position: fixed; */
+    position: sticky;
+    top: 0;
+    background-color: white;
+    border: 3px red dashed;
+    padding: 0;
+    margin: 0;
+    justify-content: space-evenly;
   }
 
   .navbar__item {
@@ -70,5 +93,20 @@
     justify-content: space-around;
     margin: 0.5rem 0rem;
     border: 1px dashed lime;
+  }
+
+  .navbar-collapse,
+  .navbar-expand {
+    display: flex;
+    justify-content: center;
+    border: 1px red dotted;
+    align-self: center;
+    width: 50%;
+  }
+
+  .navbar-collapse:hover,
+  .navbar-expand:hover {
+    color: #da4c4c;
+    cursor: pointer;
   }
 }
