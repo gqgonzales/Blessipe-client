@@ -27,8 +27,8 @@
     text-align: center;
   }
   .recipe-entry {
-    border: 2px salmon dotted;
     padding: 1rem;
+    /* border: 2px salmon dotted; */
   }
 
   .description-field {
@@ -37,9 +37,9 @@
   }
 
   .recipe-form {
-    border: 1px black solid;
     margin: 1rem;
     padding: 0.5rem 1rem 5rem 1rem;
+    /* border: 1px black solid; */
 
     background-color: white;
     flex-basis: 50%;
@@ -71,12 +71,12 @@
   }
 
   .recipe-entry {
-    border: 2px salmon dotted;
     padding: 1rem;
     margin: 0rem 0rem 4rem 0rem;
     display: flex;
     justify-content: space-between;
     width: 80%;
+    /* border: 2px salmon dotted; */
   }
 
   .all-recipes {
@@ -93,8 +93,8 @@
   }
 
   .recipe-description {
-    border: 2px orange dashed;
     margin: 0 1rem 0;
+    /* border: 2px orange dashed; */
   }
 
   .recipe-form {
@@ -140,8 +140,8 @@
 .button-group {
   flex-direction: row;
   max-width: fit-content;
-  border: groove green 3px;
   margin: 0 0 1rem 0;
+  /* border: groove green 3px; */
 }
 
 .recipe-button {
@@ -168,3 +168,7 @@
 .save-button:hover {
   background-color: #e1a95f;
 }
+
+/* .visibility-toggle {
+  color: #da4c4c;
+} */

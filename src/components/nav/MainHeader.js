@@ -1,11 +1,8 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 import { NavBar } from "./NavBar";
 import "./NavBar.css";
 
 export const MainHeader = () => {
-  // const [showNavBar, setShowNavBar] = useState(false);
-
   return (
     <>
       <header className="main-header">
