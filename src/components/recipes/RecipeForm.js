@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { RecipeContext } from "../recipes/RecipeProvider.js";
 import { RestaurantContext } from "../restaurants/RestaurantProvider.js";
+import ToggleButton from "@mui/material/ToggleButton";
 import "./Recipe.css";
 
 export const RecipeForm = () => {
@@ -12,11 +13,15 @@ export const RecipeForm = () => {
   const { getRestaurants, restaurants } = useContext(RestaurantContext);
   const [recipeImage, setRecipeImage] = useState("");
 
+  const [visible, setVisible] = React.useState(false);
+  const flipVisibility = () => setVisible(!visible);
+
   const [currentRecipe, setCurrentRecipe] = useState({
     traveler: 0,
     restaurant: 0,
     name: "",
     date: "",
+    isPublic: false,
     description: "",
     image: "",
   });
@@ -33,9 +38,12 @@ export const RecipeForm = () => {
           restaurant: recipe.restaurant.id,
           name: recipe.name,
           date: recipe.date,
+          isPublic: recipe.is_public,
           description: recipe.description,
           image: recipe.image,
         });
+        // Have to set this outside of the current recipe to have the boolean flippable.
+        setVisible(recipe.is_public);
       });
     }
   }, [recipe_id]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -141,6 +149,22 @@ export const RecipeForm = () => {
             />
           </div>
         </fieldset>
+        {/* IS PUBLIC? */}
+        <fieldset>
+          <label htmlFor="isPublic">Set visibility to other travelers:</label>
+          <br></br>
+          <ToggleButton
+            className="visibility-toggle"
+            value={currentRecipe.isPublic}
+            selected={visible}
+            onChange={flipVisibility}
+            style={{
+              color: visible ? "#da4c4c" : "black",
+            }}
+          >
+            {visible ? "Public" : "Private"}
+          </ToggleButton>
+        </fieldset>
         {/* -------------- IMAGE UPLOAD v1  -------------- */}
         <fieldset>
           <label htmlFor="image"> Upload a photo of the dish: </label>
@@ -184,6 +208,7 @@ export const RecipeForm = () => {
                   restaurant: parseInt(currentRecipe.restaurant),
                   name: currentRecipe.name,
                   date: currentRecipe.date,
+                  isPublic: visible,
                   description: currentRecipe.description,
                   image: recipeImage,
                 };
@@ -205,6 +230,8 @@ export const RecipeForm = () => {
                   restaurant: parseInt(currentRecipe.restaurant),
                   name: currentRecipe.name,
                   date: currentRecipe.date,
+                  // isPublic: currentRecipe.isPublic,
+                  isPublic: visible,
                   description: currentRecipe.description,
                   image: currentRecipe.image,
                 };
@@ -226,6 +253,7 @@ export const RecipeForm = () => {
                 restaurant: currentRecipe.restaurant,
                 name: currentRecipe.name,
                 date: currentRecipe.date,
+                isPublic: visible,
                 description: currentRecipe.description,
                 image: recipeImage,
               };

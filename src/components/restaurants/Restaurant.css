@@ -1,21 +1,37 @@
 @media only screen and (max-width: 600px) {
+  .restaurants__header {
+    justify-content: center;
+    text-align: center;
+  }
   .restaurant-card {
-    border: 2px cornflowerblue solid;
     padding: 1rem;
+    /* border: 2px cornflowerblue solid; */
   }
 
   .match-card {
-    border: 2px purple solid;
     max-width: 100%;
     margin: 1rem 1rem 1rem 0;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     /* justify-content: space-around; */
+    /* border: 2px purple solid; */
   }
 
   .restaurant-keywords {
     padding: 0rem 1.75rem 0rem 0rem;
+  }
+
+  .no-favorites {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .browse-button {
+    max-width: fit-content;
   }
 }
 
@@ -33,12 +49,12 @@
   }
 
   .restaurant-card {
-    border: 2px cornflowerblue solid;
     max-width: 20rem;
     margin: 4rem 6rem;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    /* border: 2px cornflowerblue solid; */
   }
 
   .matchedRestaurants {
@@ -50,13 +66,20 @@
   }
 
   .match-card {
-    border: 2px purple solid;
     max-width: fit-content;
     margin: 2rem 4rem 0 0;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     /* justify-content: space-around; */
+    /* border: 2px purple solid; */
+  }
+
+  .no-favorites {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
   }
 }
 

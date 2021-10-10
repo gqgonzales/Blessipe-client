@@ -110,7 +110,15 @@ export const FavoriteRestaurants = (props) => {
         ) : (
           <>
             {" "}
-            <h2>No favorited restaurants yet 😔</h2>
+            <div className="no-favorites">
+              <h2>No favorited restaurants yet 😔</h2>
+              <button
+                className="browse-button"
+                onClick={() => history.push("/restaurants")}
+              >
+                Browse Restaurants
+              </button>
+            </div>
           </>
         )}
       </article>
