@@ -67,17 +67,27 @@
 /* ------------------------- DEVICE SPLIT ------------------------- */
 
 @media only screen and (min-width: 601px) {
+  .site-text {
+    background-color: #da4c4c;
+    display: flex;
+    position: sticky;
+    top: 0;
+    height: fit-content;
+    justify-content: space-evenly;
+    align-items: center;
+  }
   .main-header {
-    /* position: fixed; */
+    position: sticky;
+    top: 0;
+    background-color: white;
+    height: fit-content;
   }
   .site-title {
-    text-align: center;
-    font-size: 5rem;
+    color: white;
   }
 
   .site-subhead {
-    text-align: center;
-    font-size: 2.5rem;
+    color: white;
   }
 
   .navbar {
@@ -87,19 +97,18 @@
     position: sticky;
     top: 0;
     background-color: white;
-    border: 3px red dashed;
     padding: 0;
     margin: 0;
     justify-content: space-evenly;
+    border-bottom: black 2px solid;
   }
 
   .navbar__item {
     display: flex;
-    flex-basis: 20%;
     list-style-type: none;
-    justify-content: space-around;
+    justify-content: space-evenly;
     margin: 0.5rem 0rem;
-    border: 1px dashed lime;
+    width: fit-content;
   }
 
   .navbar-collapse,

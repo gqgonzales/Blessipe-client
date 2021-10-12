@@ -27,7 +27,7 @@ export const RecipeList = () => {
           .map((recipe) => {
             return (
               <section key={recipe.id} className="recipe-entry">
-                <div className="recipe-header">
+                <div className="recipe-text-container">
                   <RecipeDetail
                     recipe={recipe}
                     key={`Recipe-Card-${recipe.id}`}
