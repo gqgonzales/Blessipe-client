@@ -16,7 +16,7 @@
 
 #### About authentication....
 
-This application uses mock authentication which is purely for demonstration purposes. Therefore the login an registration code written here is not secure and is not suitable for a professional application.
+This application uses mock authentication which is purely for demonstration purposes. Therefore the login and registration code written here is not secure and is not suitable for a professional application.
 
 
 #### Demo User Credentials
