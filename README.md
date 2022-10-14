@@ -36,8 +36,3 @@ Blessipe was founded on React/Python, deployed on [Digital Ocean](https://www.di
 
 **********
 
-pipenv shell
-pipenv install django autopep8 pylint djangorestframework django-cors-headers pylint-django phonenumbers pillow
-
-
-**********
